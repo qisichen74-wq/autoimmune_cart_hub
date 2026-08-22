@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- noindex 是刻意的：这是一个自用情报站，不追求搜索收录。
+     要放开收录，删掉下面这一行即可（同时应重新审一遍水印措辞）。 -->
+<meta name="robots" content="noindex">
+<title>疾病档案｜自身免疫 CAR 细胞治疗情报站</title>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav><a href="../index.html">最新动态</a><a href="../diseases/index.html">疾病档案</a><a href="../method.html">口径与盲区</a></nav>
+<h1>疾病档案</h1>
+<p class="dim sm" style="margin-top:.1rem">分疾病归类 · 共 52 个实体</p>
+
+<p class="sm">全部 <b>52</b> 个疾病实体，其中
+<b>39</b> 个在 333 项在范围试验里有命中。</p>
+
+<div class="banner">
+<b>0 就是 0，那一行不会消失。</b> 「页面上没有 GBS」和「GBS 有 0 项 CAR 试验」
+是两个完全不同的结论，而前者会被读成「本站没覆盖 GBS」。
+本表列出全部实体，包括命中为 0 的 —— 0 是一个观测结果，不是缺失。
+</div>
+
+<div class="banner">
+<b>类别标签只是标签，不是范围划分。</b> 按使用者 2026-08-22 的决定，
+下列全部类别（含同种免疫、过敏、自身炎症）<b>均计入本站的"自免"口径</b>。
+保留类别是为了需要分开看时不必重跑 —— 例如"不含移植相关的自免试验数"是一句 SQL。
+AL 型淀粉样变按同一决定<b>不纳入</b>（浆细胞病，非免疫介导），
+移植后淋巴增殖性疾病（PTLD）归入肿瘤参照。
+</div>
+
+<p class="sm dim">「专病」= 该试验的适应症就是这个病；「篮式」= 该病是多适应症试验里的一个。
+两列刻意分开：把篮式试验算进专病数会虚增最受关注的那个数字。
+「含子实体」列只在存在父子关系时给出（如狼疮性肾炎上卷到系统性红斑狼疮）。</p>
+<h2>经典自身免疫病<span class="xs dim">　26 个实体，21 个有命中</span></h2><table><thead><tr><th>疾病</th><th class="n">专病</th><th class="n">篮式</th><th class="n">合计</th><th class="n">含子实体</th></tr></thead><tbody><tr><td><a href="sle.html">系统性红斑狼疮</a><div class="xs dim">Systemic Lupus Erythematosus</div></td><td class="n">69</td><td class="n dim">68</td><td class="n"><b>137</b></td><td class="n dim">154</td></tr>
+<tr><td><a href="ssc.html">系统性硬化症</a><div class="xs dim">Systemic Sclerosis</div></td><td class="n">15</td><td class="n dim">62</td><td class="n"><b>77</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="ln.html">狼疮性肾炎</a><div class="xs dim">Lupus Nephritis · 上卷计入 <a href="sle.html">系统性红斑狼疮</a></div></td><td class="n">22</td><td class="n dim">22</td><td class="n"><b>44</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="aav.html">ANCA 相关血管炎</a><div class="xs dim">ANCA-Associated Vasculitis</div></td><td class="n">6</td><td class="n dim">36</td><td class="n"><b>42</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="sjogren.html">干燥综合征</a><div class="xs dim">Sjogren Syndrome</div></td><td class="n">5</td><td class="n dim">24</td><td class="n"><b>29</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="itp.html">免疫性血小板减少症</a><div class="xs dim">Immune Thrombocytopenia</div></td><td class="n">11</td><td class="n dim">7</td><td class="n"><b>18</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="ra.html">类风湿关节炎</a><div class="xs dim">Rheumatoid Arthritis</div></td><td class="n">7</td><td class="n dim">11</td><td class="n"><b>18</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="aiha.html">自身免疫性溶血性贫血</a><div class="xs dim">Autoimmune Hemolytic Anemia</div></td><td class="n">10</td><td class="n dim">7</td><td class="n"><b>17</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="igan.html">IgA 肾病</a><div class="xs dim">IgA Nephropathy</div></td><td class="n">2</td><td class="n dim">7</td><td class="n"><b>9</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="aps.html">抗磷脂综合征</a><div class="xs dim">Antiphospholipid Syndrome</div></td><td class="n zero">0</td><td class="n dim">8</td><td class="n"><b>8</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="igg4rd.html">IgG4 相关疾病</a><div class="xs dim">IgG4-Related Disease</div></td><td class="n">4</td><td class="n dim">4</td><td class="n"><b>8</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="mn.html">膜性肾病</a><div class="xs dim">Membranous Nephropathy</div></td><td class="n">5</td><td class="n dim">2</td><td class="n"><b>7</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="graves.html">Graves 病 / Graves 眼病</a><div class="xs dim">Graves Disease / Thyroid Eye Disease</div></td><td class="n">3</td><td class="n dim">0</td><td class="n"><b>3</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="t1d.html">1 型糖尿病</a><div class="xs dim">Type 1 Diabetes</div></td><td class="n">3</td><td class="n dim">0</td><td class="n"><b>3</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="crohn.html">克罗恩病</a><div class="xs dim">Crohn Disease</div></td><td class="n">1</td><td class="n dim">1</td><td class="n"><b>2</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="pv.html">寻常型天疱疮</a><div class="xs dim">Pemphigus Vulgaris</div></td><td class="n">2</td><td class="n dim">0</td><td class="n"><b>2</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="uc.html">溃疡性结肠炎</a><div class="xs dim">Ulcerative Colitis</div></td><td class="n">1</td><td class="n dim">1</td><td class="n"><b>2</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="cad.html">冷凝集素病</a><div class="xs dim">Cold Agglutinin Disease · 上卷计入 <a href="aiha.html">自身免疫性溶血性贫血</a></div></td><td class="n">1</td><td class="n dim">0</td><td class="n"><b>1</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="ittp.html">免疫性血栓性血小板减少性紫癜</a><div class="xs dim">Immune Thrombotic Thrombocytopenic Purpura</div></td><td class="n zero">0</td><td class="n dim">1</td><td class="n"><b>1</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="jia.html">幼年特发性关节炎（非全身型）</a><div class="xs dim">Juvenile Idiopathic Arthritis (non-systemic subtypes)</div></td><td class="n zero">0</td><td class="n dim">1</td><td class="n"><b>1</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="pbc.html">原发性胆汁性胆管炎</a><div class="xs dim">Primary Biliary Cholangitis</div></td><td class="n zero">0</td><td class="n dim">1</td><td class="n"><b>1</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="aha.html">获得性血友病 A</a><div class="xs dim">Acquired Hemophilia A</div></td><td class="n zero">0</td><td class="n dim">0</td><td class="n"><span class=zero>0</span></td><td class="n dim">—</td></tr>
+<tr><td><a href="aih.html">自身免疫性肝炎</a><div class="xs dim">Autoimmune Hepatitis</div></td><td class="n zero">0</td><td class="n dim">0</td><td class="n"><span class=zero>0</span></td><td class="n dim">—</td></tr>
+<tr><td><a href="bp.html">大疱性类天疱疮</a><div class="xs dim">Bullous Pemphigoid</div></td><td class="n zero">0</td><td class="n dim">0</td><td class="n"><span class=zero>0</span></td><td class="n dim">—</td></tr>
+<tr><td><a href="mctd.html">混合性结缔组织病</a><div class="xs dim">Mixed Connective Tissue Disease</div></td><td class="n zero">0</td><td class="n dim">0</td><td class="n"><span class=zero>0</span></td><td class="n dim">—</td></tr>
+<tr><td><a href="uveitis.html">非感染性葡萄膜炎</a><div class="xs dim">Non-Infectious Uveitis</div></td><td class="n zero">0</td><td class="n dim">0</td><td class="n"><span class=zero>0</span></td><td class="n dim">—</td></tr></tbody></table><h2>神经免疫病<span class="xs dim">　14 个实体，8 个有命中</span></h2><table><thead><tr><th>疾病</th><th class="n">专病</th><th class="n">篮式</th><th class="n">合计</th><th class="n">含子实体</th></tr></thead><tbody><tr><td><a href="iim.html">特发性炎性肌病</a><div class="xs dim">Idiopathic Inflammatory Myopathy</div></td><td class="n">14</td><td class="n dim">53</td><td class="n"><b>67</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="mg.html">重症肌无力</a><div class="xs dim">Myasthenia Gravis</div></td><td class="n">18</td><td class="n dim">14</td><td class="n"><b>32</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="ms.html">多发性硬化</a><div class="xs dim">Multiple Sclerosis</div></td><td class="n">9</td><td class="n dim">17</td><td class="n"><b>26</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="nmosd.html">视神经脊髓炎谱系疾病</a><div class="xs dim">Neuromyelitis Optica Spectrum Disorder</div></td><td class="n">4</td><td class="n dim">11</td><td class="n"><b>15</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="cidp.html">慢性炎性脱髓鞘性多发神经根神经病</a><div class="xs dim">Chronic Inflammatory Demyelinating Polyneuropathy</div></td><td class="n zero">0</td><td class="n dim">6</td><td class="n"><b>6</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="ae.html">自身免疫性脑炎</a><div class="xs dim">Autoimmune Encephalitis</div></td><td class="n zero">0</td><td class="n dim">5</td><td class="n"><b>5</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="mogad.html">MOG 抗体相关疾病</a><div class="xs dim">MOG Antibody-Associated Disease</div></td><td class="n zero">0</td><td class="n dim">3</td><td class="n"><b>3</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="sps.html">僵人综合征</a><div class="xs dim">Stiff Person Syndrome</div></td><td class="n">1</td><td class="n dim">2</td><td class="n"><b>3</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="aag.html">自身免疫性自主神经节病</a><div class="xs dim">Autoimmune Autonomic Ganglionopathy</div></td><td class="n zero">0</td><td class="n dim">0</td><td class="n"><span class=zero>0</span></td><td class="n dim">—</td></tr>
+<tr><td><a href="ai_cerebellar_ataxia.html">自身免疫性小脑性共济失调</a><div class="xs dim">Autoimmune Cerebellar Ataxia</div></td><td class="n zero">0</td><td class="n dim">0</td><td class="n"><span class=zero>0</span></td><td class="n dim">—</td></tr>
+<tr><td><a href="anti_mag.html">抗 MAG 抗体周围神经病</a><div class="xs dim">Anti-MAG Peripheral Neuropathy</div></td><td class="n zero">0</td><td class="n dim">0</td><td class="n"><span class=zero>0</span></td><td class="n dim">—</td></tr>
+<tr><td><a href="gbs.html">Guillain-Barré 综合征</a><div class="xs dim">Guillain-Barre Syndrome</div></td><td class="n zero">0</td><td class="n dim">0</td><td class="n"><span class=zero>0</span></td><td class="n dim">—</td></tr>
+<tr><td><a href="lems.html">Lambert-Eaton 肌无力综合征</a><div class="xs dim">Lambert-Eaton Myasthenic Syndrome</div></td><td class="n zero">0</td><td class="n dim">0</td><td class="n"><span class=zero>0</span></td><td class="n dim">—</td></tr>
+<tr><td><a href="paraneoplastic.html">神经系统副肿瘤综合征</a><div class="xs dim">Paraneoplastic Neurological Syndrome</div></td><td class="n zero">0</td><td class="n dim">0</td><td class="n"><span class=zero>0</span></td><td class="n dim">—</td></tr></tbody></table><h2>自身炎症性疾病<span class="xs dim">　3 个实体，3 个有命中</span></h2><table><thead><tr><th>疾病</th><th class="n">专病</th><th class="n">篮式</th><th class="n">合计</th><th class="n">含子实体</th></tr></thead><tbody><tr><td><a href="behcet.html">白塞病</a><div class="xs dim">Behcet Disease</div></td><td class="n zero">0</td><td class="n dim">1</td><td class="n"><b>1</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="hs.html">化脓性汗腺炎</a><div class="xs dim">Hidradenitis Suppurativa</div></td><td class="n">1</td><td class="n dim">0</td><td class="n"><b>1</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="still.html">成人 Still 病 / 系统性幼年特发性关节炎</a><div class="xs dim">Adult-Onset Still Disease / Systemic JIA</div></td><td class="n zero">0</td><td class="n dim">1</td><td class="n"><b>1</b></td><td class="n dim">—</td></tr></tbody></table><h2>同种免疫（移植相关）<span class="xs dim">　3 个实体，3 个有命中</span></h2><table><thead><tr><th>疾病</th><th class="n">专病</th><th class="n">篮式</th><th class="n">合计</th><th class="n">含子实体</th></tr></thead><tbody><tr><td><a href="transplant_rejection.html">实体器官移植排斥 / 脱敏</a><div class="xs dim">Solid Organ Transplant Rejection / Desensitization</div></td><td class="n">2</td><td class="n dim">2</td><td class="n"><b>4</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="alloimmune_cytopenia.html">同种免疫性血细胞减少</a><div class="xs dim">Alloimmune Cytopenia</div></td><td class="n">2</td><td class="n dim">0</td><td class="n"><b>2</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="cgvhd.html">慢性移植物抗宿主病</a><div class="xs dim">Chronic Graft Versus Host Disease</div></td><td class="n zero">0</td><td class="n dim">1</td><td class="n"><b>1</b></td><td class="n dim">—</td></tr></tbody></table><h2>过敏性疾病<span class="xs dim">　2 个实体，0 个有命中</span></h2><table><thead><tr><th>疾病</th><th class="n">专病</th><th class="n">篮式</th><th class="n">合计</th><th class="n">含子实体</th></tr></thead><tbody><tr><td><a href="allergic_asthma.html">过敏性哮喘</a><div class="xs dim">Allergic Asthma</div></td><td class="n zero">0</td><td class="n dim">0</td><td class="n"><span class=zero>0</span></td><td class="n dim">—</td></tr>
+<tr><td><a href="allergic_rhinitis.html">过敏性鼻炎</a><div class="xs dim">Allergic Rhinitis</div></td><td class="n zero">0</td><td class="n dim">0</td><td class="n"><span class=zero>0</span></td><td class="n dim">—</td></tr></tbody></table><h2>其他免疫介导疾病<span class="xs dim">　1 个实体，1 个有命中</span></h2><table><thead><tr><th>疾病</th><th class="n">专病</th><th class="n">篮式</th><th class="n">合计</th><th class="n">含子实体</th></tr></thead><tbody><tr><td><a href="aplastic_anemia.html">再生障碍性贫血</a><div class="xs dim">Aplastic Anemia</div></td><td class="n">1</td><td class="n dim">1</td><td class="n"><b>2</b></td><td class="n dim">—</td></tr></tbody></table><h2>伞形标签（未指明具体实体）<span class="xs dim">　3 个实体，3 个有命中</span></h2><table><thead><tr><th>疾病</th><th class="n">专病</th><th class="n">篮式</th><th class="n">合计</th><th class="n">含子实体</th></tr></thead><tbody><tr><td><a href="autoimmune_unspecified.html">自身免疫病（未指明具体实体）</a><div class="xs dim">Autoimmune Disease, Unspecified</div></td><td class="n">42</td><td class="n dim">27</td><td class="n"><b>69</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="immune_kidney_unspecified.html">免疫介导肾脏病（未指明具体实体）</a><div class="xs dim">Immune-Mediated Kidney Disease, Unspecified</div></td><td class="n">4</td><td class="n dim">6</td><td class="n"><b>10</b></td><td class="n dim">—</td></tr>
+<tr><td><a href="ibd_unspecified.html">炎症性肠病（未指明克罗恩或溃结）</a><div class="xs dim">Inflammatory Bowel Disease, Unspecified</div></td><td class="n">1</td><td class="n dim">0</td><td class="n"><b>1</b></td><td class="n dim">—</td></tr></tbody></table>
+
+<footer>
+本页内容由自动管线从公开来源汇编生成，每条结论均可回放至原始字节。<br>汇编、排序与关注点标注是本站的编辑判断，不代表任何机构立场。<br>不含未公开披露信息；不构成投资建议或诊疗建议。
+<p class="xs">本页由自动管线于 2026-08-22T15:34:18Z 生成
+（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
+数字口径见<a href="../method.html">口径与盲区</a>。</p>
+</footer>
+</body>
+</html>

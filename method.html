@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- noindex 是刻意的：这是一个自用情报站，不追求搜索收录。
+     要放开收录，删掉下面这一行即可（同时应重新审一遍水印措辞）。 -->
+<meta name="robots" content="noindex">
+<title>口径与盲区｜自身免疫 CAR 细胞治疗情报站</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<nav><a href="index.html">最新动态</a><a href="diseases/index.html">疾病档案</a><a href="method.html">口径与盲区</a></nav>
+<h1>口径与盲区</h1>
+<p class="dim sm" style="margin-top:.1rem">数字怎么来的、哪些地方一定不准</p>
+
+<h2>召回：为什么是「模态优先全量扫」而不是「按病名检索」</h2>
+<p class="sm">本站不按疾病名去注册库检索，而是先用
+<code>query.intr = CAR OR "chimeric antigen receptor"</code> 把干预性研究全量取回
+（实测 2905 条），再在本地做疾病分类。</p>
+<p class="sm">理由是可证明性：按病名检索的漏检必然存在且不可见 ——
+实测候选池里有一批试验的 condition 只写「Autoimmune Diseases」这一个笼统标签，
+没有任何具体病名可匹配；而走 MeSH 树的 <code>cond="Autoimmune Diseases"</code>
+根本不包含克罗恩病与溃疡性结肠炎（它们挂在 Inflammatory Bowel Diseases 下）。
+全量扫的代价只有约 2.7 MB，换来的是「没漏」这件事由构造保证，而不是靠病名列全。</p>
+
+<h3>候选池里的 2905 条不能叫「2905 项 CAR 试验」</h3>
+<p class="sm">检索式命中的是字面 <code>CAR</code>，其中包含真实噪声：
+干预描述里出现 <code>CARS</code>（儿童孤独症评定量表）、<code>E-CAR</code> 量表，
+以及字面意义的「汽车」（安全座椅安装、酒驾、机动车事故）。
+这些在本地分类时被排除，明细如下 —— <b>排除必须被看见</b>。</p>
+<table><thead><tr><th>排除类别</th><th class="n">condition 字符串数</th></tr></thead>
+<tbody><tr><td>人工裁定非 CAR 研究</td><td class="n">5</td></tr><tr><td>心脏病，非免疫介导。FAP CAR-T 治心肌纤维化是真实在研方向，但适应症不在本站范围</td><td class="n">4</td></tr><tr><td>糖尿病但未指明 1 型 / 明确为 2 型或妊娠期 —— 只有 1 型是自身免疫病</td><td class="n">4</td></tr><tr><td>原文核过：非 CAR 细胞治疗研究，只是字面命中检索词，与本站主题无关</td><td class="n">3</td></tr><tr><td>免疫缺陷 / 非免疫介导，不属于自身免疫范围（2026-08-22 人工过队列裁定）</td><td class="n">2</td></tr><tr><td>非免疫介导疾病，人工已核（记住裁定，避免每天重跑又塞回队列）</td><td class="n">2</td></tr></tbody></table>
+
+<h3>反过来，纳入不等于「已确认是 CAR 试验」</h3>
+<p class="sm">模态证据字段记录的是「这条试验为什么进网」，不是「它是不是 CAR 疗法」。
+其中 <code>仅标题含 CAR</code> 与 <code>已取字段未见 CAR</code> 两类需要人工复核。</p>
+<table><tbody><tr><td>干预字段含 CAR / chimeric antigen receptor</td><td class="n">265</td></tr><tr><td>仅标题含 CAR，干预字段未见</td><td class="n">38</td></tr><tr><td>已取字段中未见 CAR 字样（由检索端命中，未复核）</td><td class="n">30</td></tr></tbody></table>
+
+<h2>分类：确定性规则，不用模型</h2>
+<p class="sm">condition 字符串到疾病实体的映射全部是可复现规则（token 集合相等 /
+连续短语子集 / 单词特异词），规则给不出结论的进人工队列，
+裁定结果物化到 <code>config/condition_map.yaml</code> 并留 git diff。
+不用大模型分类的原因很直接：分类结果就是「某病有 N 项试验」这个数字，
+规则错了可以 diff、可以写测试守住；模型错了只会安静地把 MOGAD 数成 NMOSD，
+而且下次跑还可能不一样。</p>
+<p class="sm">已登记 condition 字符串 <b>2398</b> 条，标签分布：</p>
+<table><tbody><tr><td>oncology</td><td class="n">1578</td></tr><tr><td>unmatched_no_immune_signal</td><td class="n">403</td></tr><tr><td>disease_match</td><td class="n">207</td></tr><tr><td>other_disease</td><td class="n">53</td></tr><tr><td>product_or_procedure</td><td class="n">45</td></tr><tr><td>not_a_disease</td><td class="n">38</td></tr><tr><td>target_or_biomarker</td><td class="n">26</td></tr><tr><td>umbrella</td><td class="n">19</td></tr><tr><td>out_of_scope_decided</td><td class="n">17</td></tr><tr><td>car_t_toxicity</td><td class="n">12</td></tr></tbody></table>
+<p class="sm">人工队列：待裁定 <b>0</b> 条，
+历史已裁定 1149 条。队列的判据是<b>正信号</b>
+（字符串带免疫词根但未匹配到任何已登记实体），不是「解释不了的字符串」——
+后者会让队列涨到几百条，等于没有队列。</p>
+
+<h2>范围口径（使用者 2026-08-22 决定）</h2>
+<ul class="sm">
+<li>移植物抗宿主病、实体器官移植排斥、再生障碍性贫血、过敏（哮喘/鼻炎）、
+炎症性肠病伞形标签、化脓性汗腺炎、免疫介导肾病 —— <b>均计入自免</b>。</li>
+<li>AL 型淀粉样变 —— <b>不纳入</b>（浆细胞病，与免疫介导机制不相关）。</li>
+<li>移植后淋巴增殖性疾病（PTLD）—— 归入<b>肿瘤参照</b>（移植后淋巴增殖性肿瘤）。</li>
+<li>肿瘤专属试验 2257 项入库为参照，只存试验骨架。
+留着它们是为了能回答三个问题：同一产品在肿瘤与自免的并行开发路线、
+同一靶点在肿瘤的剂量与清淋先例、CRS/ICANS 的安全性先例
+（这些数据几乎全在肿瘤试验里，而自免适应症可接受的毒性阈值不同）。</li>
+</ul>
+<p class="sm dim">保留意见，按决定执行但不丢信息：同种免疫（GVHD、移植排斥）与
+经典自身免疫是不同机制，把它们与 NMOSD、SLE 混成一个计数会得到一个
+「自免 CAR 试验数」里含非自身抗原免疫反应的数字。因此每个实体都带类别标签，
+默认全部计入（= 使用者的决定），需要分开看时是一句 SQL 而不是一次重跑。</p>
+
+<h2>已知盲区（是盲区，不是待办）</h2>
+<ul class="sm">
+<li><b>干预名与描述都不含 CAR 字样的产品</b>会漏。需要按产品别名定向扫补，尚未做。</li>
+<li><b>字段级变更史在建库之前永久缺失</b>：ClinicalTrials.gov 的历史修订端点返回 403，
+替代途径已穷尽。本站的字段级比对只能从 2026-08-22 起累积。</li>
+<li><b>中国 CDE / ChiCTR 尚未接入</b>，NMPA 亦未接入。
+候选池里中国申办的试验来自其在 ClinicalTrials.gov 的登记，只登记在国内平台的会漏。</li>
+<li><b>会议摘要（ACR / AAN / ECTRIMS / EBMT）尚未解析。</b>
+其中 acrabstracts.org 的 robots.txt 明确 Disallow 了通用抓取代理，须走人工录入。</li>
+<li><b>公司交易与文献进展两条流未启用</b>，首页已按「未启用」标注，不显示为 0。</li>
+</ul>
+
+<h2>不做什么</h2>
+<ul class="sm">
+<li>不处理任何非公开披露信息。交易记录一律要求公开披露渠道，
+且「条款未披露」本身作为结论的一部分保留 —— 省掉它会让读者以为条款已知。</li>
+<li>不纳入任何受试者层面数据。本站与本机上的受试者数据文件之间<b>不存在代码通路</b>。</li>
+<li>不输出投资建议或诊疗建议。涉及具体患者的决策请回到一手资料。</li>
+</ul>
+
+<footer>
+本页内容由自动管线从公开来源汇编生成，每条结论均可回放至原始字节。<br>汇编、排序与关注点标注是本站的编辑判断，不代表任何机构立场。<br>不含未公开披露信息；不构成投资建议或诊疗建议。
+<p class="xs">本页由自动管线于 2026-08-22T15:34:18Z 生成
+（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
+数字口径见<a href="method.html">口径与盲区</a>。</p>
+</footer>
+</body>
+</html>

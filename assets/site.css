@@ -1,0 +1,43 @@
+:root { color-scheme: light dark; --line:#e5e7eb; --dim:#6b7280; --bg2:#f9fafb;
+        --p1:#b45309; --ok:#047857; --warn:#b91c1c }
+@media (prefers-color-scheme: dark) {
+  :root { --line:#374151; --dim:#9ca3af; --bg2:#111827 } }
+* { box-sizing: border-box }
+body { max-width: 62rem; margin: 0 auto; padding: 1.5rem 1.1rem 5rem;
+       font: 15.5px/1.7 -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif }
+a { color: inherit; text-decoration-color: var(--dim); text-underline-offset: 2px }
+h1 { font-size: 1.45rem; margin: .3rem 0 .1rem }
+h2 { font-size: 1.12rem; margin: 2.4rem 0 .6rem; padding-bottom: .3rem;
+     border-bottom: 1px solid var(--line) }
+h3 { font-size: .98rem; margin: 1.5rem 0 .4rem }
+nav { font-size: .9rem; padding-bottom: .8rem; border-bottom: 1px solid var(--line);
+      margin-bottom: 1.1rem }
+nav a { margin-right: 1rem }
+.dim { color: var(--dim) }
+.sm { font-size: .87rem }
+.xs { font-size: .8rem }
+table { border-collapse: collapse; width: 100%; font-size: .87rem; margin: .5rem 0 }
+th, td { text-align: left; padding: .4rem .5rem; border-bottom: 1px solid var(--line);
+         vertical-align: top }
+th { font-weight: 600; color: var(--dim); font-size: .82rem; white-space: nowrap }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap }
+.banner { border-left: 3px solid var(--ok); background: var(--bg2);
+          padding: .55rem .9rem; margin: .8rem 0 1.4rem; font-size: .9rem }
+.banner.stale { border-left-color: var(--warn) }
+.feed { border: 1px solid var(--line); border-radius: 6px; padding: .8rem 1rem;
+        margin: .9rem 0 }
+.feed > h3 { margin-top: 0 }
+.tag { display: inline-block; font-size: .74rem; padding: .05rem .42rem; border-radius: 3px;
+       border: 1px solid var(--line); color: var(--dim); white-space: nowrap }
+.tag.live { border-color: var(--ok); color: var(--ok) }
+.tag.off { border-color: var(--p1); color: var(--p1) }
+.tag.acc { border-color: var(--dim) }
+.why { color: var(--dim); font-size: .86rem; margin: .35rem 0 0 }
+.kv { display: flex; flex-wrap: wrap; gap: .35rem 1.4rem; font-size: .88rem; margin: .4rem 0 }
+.kv b { font-weight: 600 }
+footer { margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid var(--line);
+         color: var(--dim); font-size: .82rem }
+details { margin: .6rem 0 }
+summary { cursor: pointer; font-size: .88rem; color: var(--dim) }
+code { background: var(--bg2); padding: .05rem .3rem; border-radius: 3px; font-size: .88em }
+.zero { color: var(--dim) }

@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<nav><a href="index.html">最新动态</a><a href="diseases/index.html">疾病档案</a><a href="method.html">口径与盲区</a></nav>
+<nav><a href="index.html">最新动态</a><a href="diseases/index.html">疾病档案</a><a href="literature.html">文献与预印本</a><a href="deals.html">交易情报</a><a href="sponsors.html">申办方</a><a href="method.html">口径与盲区</a></nav>
 <h1>口径与盲区</h1>
 <p class="dim sm" style="margin-top:.1rem">数字怎么来的、哪些地方一定不准</p>
 
@@ -46,10 +46,14 @@
 而且下次跑还可能不一样。</p>
 <p class="sm">已登记 condition 字符串 <b>2398</b> 条，标签分布：</p>
 <table><tbody><tr><td>oncology</td><td class="n">1578</td></tr><tr><td>unmatched_no_immune_signal</td><td class="n">403</td></tr><tr><td>disease_match</td><td class="n">207</td></tr><tr><td>other_disease</td><td class="n">53</td></tr><tr><td>product_or_procedure</td><td class="n">45</td></tr><tr><td>not_a_disease</td><td class="n">38</td></tr><tr><td>target_or_biomarker</td><td class="n">26</td></tr><tr><td>umbrella</td><td class="n">19</td></tr><tr><td>out_of_scope_decided</td><td class="n">17</td></tr><tr><td>car_t_toxicity</td><td class="n">12</td></tr></tbody></table>
-<p class="sm">人工队列：待裁定 <b>0</b> 条，
+<p class="sm">疾病名人工队列：待裁定 <b>0</b> 条，
 历史已裁定 1149 条。队列的判据是<b>正信号</b>
 （字符串带免疫词根但未匹配到任何已登记实体），不是「解释不了的字符串」——
 后者会让队列涨到几百条，等于没有队列。</p>
+<p class="sm dim"><b>人工队列是一张共用表，但每一类的判据完全不同，所以数字分开给。</b>
+把它们加成一个「待裁定 N 条」，会让读者拿疾病名的判据去解释申办方的候选。
+各类当前状况：<br>· <b>疑似同一实体的申办方写法</b>：待裁定 <b>27</b> 条，累计 49 条。判据：两条申办方原文共有一个全语料罕见的身份 token；实测真合并命中率约 1/22，故只产候选、绝不自动合并<br>· <b>疑似漏检的疾病实体</b>：待裁定 <b>0</b> 条，累计 1149 条。判据：字符串带免疫词根，但未匹配到任何已登记实体
+（申办方那一类的判据与清单见<a href="sponsors.html">申办方</a>页。）</p>
 
 <h2>范围口径（使用者 2026-08-22 决定）</h2>
 <ul class="sm">
@@ -67,6 +71,9 @@
 「自免 CAR 试验数」里含非自身抗原免疫反应的数字。因此每个实体都带类别标签，
 默认全部计入（= 使用者的决定），需要分开看时是一句 SQL 而不是一次重跑。</p>
 
+<h2>引文回放：数字与原文之间那条可执行的链</h2>
+<p><span class="tag off">未启用</span> 带引文的四张表（交易 / 疗效证据 / 不良事件 / 监管事件）共 <b>0</b> 行。</p><p class="why">引文回放引擎（src/verify/replay.py）已就位，但抽取管线未上线，所以 deal / evidence_record / ae_record / regulatory_event 四张表都是 0 行。这四张表都带 CHECK(locator_replay_ok = 1)：回放不通过的行根本进不了库，不是入库后标记为待核。因此本站今天不输出任何引文级结论 —— 页面上所有数字都来自注册库结构化字段的确定性分类，不来自对原文的阅读。</p><p class="why"><b>因此请不要把本站现有的数字读成「已核对过原文」。</b>它们是注册库结构化字段的确定性分类结果 —— 保证的是「没把 MOGAD 数成 NMOSD」，不是「这个缓解率真的写在那篇文章里」。</p><p class="sm dim">机制本身可以现在就核验：<code>python -m src.audit --replay</code>。四张表为空时它报的是「没有检查对象」而不是「通过」—— 空集不等于通过，与导出前那三道闸同一条规矩。</p>
+
 <h2>已知盲区（是盲区，不是待办）</h2>
 <ul class="sm">
 <li><b>干预名与描述都不含 CAR 字样的产品</b>会漏。需要按产品别名定向扫补，尚未做。</li>
@@ -76,7 +83,30 @@
 候选池里中国申办的试验来自其在 ClinicalTrials.gov 的登记，只登记在国内平台的会漏。</li>
 <li><b>会议摘要（ACR / AAN / ECTRIMS / EBMT）尚未解析。</b>
 其中 acrabstracts.org 的 robots.txt 明确 Disallow 了通用抓取代理，须走人工录入。</li>
-<li><b>公司交易与文献进展两条流未启用</b>，首页已按「未启用」标注，不显示为 0。</li>
+<li><b>中文期刊（万方 / 知网 / 维普）没有公开检索接口</b>，且内容许可不允许再分发，
+文献层完全看不见它们 —— 而中国研究者的相当一部分自免 CAR-T 报告首发在中文刊上。
+这与交易层「非 SEC 申报人看不见」是同一个偏倚方向。</li>
+<li><b>文献层的归属判据在本站不可逐字节回放。</b>
+判定由 Europe PMC 服务端做（TITLE_ABS），而本站用 <code>resultType=lite</code> 抓取、
+库里没有存摘要正文，所以做不到"在本地重放一次短语匹配"。
+因此文献层的归属<b>不进</b>证据表，页面上也不据此给任何疗效结论。</li>
+</ul>
+
+<h2>文献层的口径（与试验层完全不同，不可混读）</h2>
+<p class="sm">试验层数的是<b>试验项数</b>，文献层数的是<b>文献篇数</b>，
+而后者的判据只是「模态短语与病名短语出现在同一篇文献的标题或摘要里」。
+一篇综述的摘要里列举十个适应症，十个病名都会命中 ——
+所以「某病 N 篇」<b>不是</b>「某病 N 篇疗效证据」。</p>
+<ul class="sm">
+<li><b>预印本与同行评议是两个数，全站不合并。</b>合并成一个「文献 N 篇」
+等于把一批未经同行评议的报告算进同一个证据档位。因此文献表里没有合计行。</li>
+<li><b>「某病 0 篇」有四种来源，只有一种能读成"没有"</b>：管线没跑过 /
+这个病本轮没有一条查询（分类词表里它只剩被筛掉的裸缩写写法）/
+它的查询有没跑完的 / 全部跑完确实没有。每个疾病档案页上写的是这四种中的哪一种。</li>
+<li><b>检索面被一份短语清单封顶</b>，清单外的写法一篇都不会命中。
+已实测的缺口逐条印在<a href="literature.html">文献与预印本</a>页上，带篇数。</li>
+<li><b>纯模态那几条查询在覆盖账里标着"没跑完"，那是主动截断</b>：
+本站只要它们的总数当分母，不取那近两万篇文档。它与「这条查询没跑成」分开计数。</li>
 </ul>
 
 <h2>不做什么</h2>
@@ -89,7 +119,7 @@
 
 <footer>
 本页内容由自动管线从公开来源汇编生成，每条结论均可回放至原始字节。<br>汇编、排序与关注点标注是本站的编辑判断，不代表任何机构立场。<br>不含未公开披露信息；不构成投资建议或诊疗建议。
-<p class="xs">数据截至 2026-08-23T04:02:46Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
+<p class="xs">试验数据截至 2026-08-23T04:02:46Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
 数字口径见<a href="method.html">口径与盲区</a>。</p>
 </footer>
 </body>

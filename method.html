@@ -10,42 +10,44 @@
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<nav><a href="index.html">最新动态</a><a href="diseases/index.html">疾病档案</a><a href="literature.html">文献与预印本</a><a href="deals.html">交易情报</a><a href="sponsors.html">申办方</a><a href="method.html">口径与盲区</a></nav>
+<nav aria-label="板块"><a href="index.html">最新动态</a><a href="diseases/index.html">疾病档案</a><a href="trials.html">全部试验</a><span class="nav-sep" aria-hidden="true">·</span><a href="literature.html">文献与预印本</a><a href="deals.html">交易情报</a><a href="sponsors.html">申办方</a><a href="oncology.html">肿瘤参照库</a><span class="nav-sep" aria-hidden="true">·</span><a href="method.html" aria-current="page">口径与盲区</a></nav>
+
 <h1>口径与盲区</h1>
 <p class="dim sm" style="margin-top:.1rem">数字怎么来的、哪些地方一定不准</p>
 
-<h2>召回：为什么是「模态优先全量扫」而不是「按病名检索」</h2>
+<nav class="toc" aria-label="本页小节"><b>本页小节</b><ol><li><a href="#recall">召回口径</a></li><li><a href="#classify">分类规则</a></li><li><a href="#scope">范围口径</a></li><li><a href="#replay">引文回放</a></li><li><a href="#verify">核验状态</a></li><li><a href="#blind">已知盲区</a></li><li><a href="#lit">文献层口径</a></li><li><a href="#cal">口径全表</a></li><li><a href="#fix">报一条错分类</a></li><li><a href="#deferred">已声明、还没建成</a></li><li><a href="#run">运行内务</a></li><li><a href="#wont">不做什么</a></li></ol></nav>
+<h2 id="recall">召回：为什么是「模态优先全量扫」而不是「按病名检索」</h2>
 <p class="sm">本站不按疾病名去注册库检索，而是先用
 <code>query.intr = CAR OR "chimeric antigen receptor"</code> 把干预性研究全量取回
-（实测 2905 条），再在本地做疾病分类。</p>
+（实测 2911 条），再在本地做疾病分类。</p>
 <p class="sm">理由是可证明性：按病名检索的漏检必然存在且不可见 ——
 实测候选池里有一批试验的 condition 只写「Autoimmune Diseases」这一个笼统标签，
 没有任何具体病名可匹配；而走 MeSH 树的 <code>cond="Autoimmune Diseases"</code>
 根本不包含克罗恩病与溃疡性结肠炎（它们挂在 Inflammatory Bowel Diseases 下）。
 全量扫的代价只有约 2.7 MB，换来的是「没漏」这件事由构造保证，而不是靠病名列全。</p>
 
-<h3>候选池里的 2905 条不能叫「2905 项 CAR 试验」</h3>
+<h3>候选池里的 2911 条不能叫「2911 项 CAR 试验」</h3>
 <p class="sm">检索式命中的是字面 <code>CAR</code>，其中包含真实噪声：
 干预描述里出现 <code>CARS</code>（儿童孤独症评定量表）、<code>E-CAR</code> 量表，
 以及字面意义的「汽车」（安全座椅安装、酒驾、机动车事故）。
 这些在本地分类时被排除，明细如下 —— <b>排除必须被看见</b>。</p>
-<table><thead><tr><th>排除类别</th><th class="n">condition 字符串数</th></tr></thead>
-<tbody><tr><td>人工裁定非 CAR 研究</td><td class="n">5</td></tr><tr><td>心脏病，非免疫介导。FAP CAR-T 治心肌纤维化是真实在研方向，但适应症不在本站范围</td><td class="n">4</td></tr><tr><td>糖尿病但未指明 1 型 / 明确为 2 型或妊娠期 —— 只有 1 型是自身免疫病</td><td class="n">4</td></tr><tr><td>原文核过：非 CAR 细胞治疗研究，只是字面命中检索词，与本站主题无关</td><td class="n">3</td></tr><tr><td>免疫缺陷 / 非免疫介导，不属于自身免疫范围（2026-08-22 人工过队列裁定）</td><td class="n">2</td></tr><tr><td>非免疫介导疾病，人工已核（记住裁定，避免每天重跑又塞回队列）</td><td class="n">2</td></tr></tbody></table>
+<div class="tw"><table><thead><tr><th>排除类别</th><th class="n">condition 字符串数</th></tr></thead>
+<tbody><tr><td>人工裁定非 CAR 研究</td><td class="n">5</td></tr><tr><td>心脏病，非免疫介导。FAP CAR-T 治心肌纤维化是真实在研方向，但适应症不在本站范围</td><td class="n">4</td></tr><tr><td>糖尿病但未指明 1 型 / 明确为 2 型或妊娠期 —— 只有 1 型是自身免疫病</td><td class="n">4</td></tr><tr><td>原文核过：非 CAR 细胞治疗研究，只是字面命中检索词，与本站主题无关</td><td class="n">3</td></tr><tr><td>免疫缺陷 / 非免疫介导，不属于自身免疫范围（2026-08-22 人工过队列裁定）</td><td class="n">2</td></tr><tr><td>非免疫介导疾病，人工已核（记住裁定，避免每天重跑又塞回队列）</td><td class="n">2</td></tr></tbody></table></div>
 
 <h3>反过来，纳入不等于「已确认是 CAR 试验」</h3>
 <p class="sm">模态证据字段记录的是「这条试验为什么进网」，不是「它是不是 CAR 疗法」。
 其中 <code>仅标题含 CAR</code> 与 <code>已取字段未见 CAR</code> 两类需要人工复核。</p>
-<table><tbody><tr><td>干预字段含 CAR / chimeric antigen receptor</td><td class="n">265</td></tr><tr><td>仅标题含 CAR，干预字段未见</td><td class="n">38</td></tr><tr><td>已取字段中未见 CAR 字样（由检索端命中，未复核）</td><td class="n">30</td></tr></tbody></table>
+<div class="ax"><h3>模态证据分布</h3><ul><li><span>干预字段含 CAR / chimeric antigen receptor</span><span class="mv">266</span></li><li><span>仅标题含 CAR，干预字段未见</span><span class="mv">38</span></li><li><span>已取字段中未见 CAR 字样（由检索端命中，未复核）</span><span class="mv">30</span></li></ul></div>
 
-<h2>分类：确定性规则，不用模型</h2>
+<h2 id="classify">分类：确定性规则，不用模型</h2>
 <p class="sm">condition 字符串到疾病实体的映射全部是可复现规则（token 集合相等 /
 连续短语子集 / 单词特异词），规则给不出结论的进人工队列，
 裁定结果物化到 <code>config/condition_map.yaml</code> 并留 git diff。
 不用大模型分类的原因很直接：分类结果就是「某病有 N 项试验」这个数字，
 规则错了可以 diff、可以写测试守住；模型错了只会安静地把 MOGAD 数成 NMOSD，
 而且下次跑还可能不一样。</p>
-<p class="sm">已登记 condition 字符串 <b>2398</b> 条，标签分布：</p>
-<table><tbody><tr><td>oncology</td><td class="n">1578</td></tr><tr><td>unmatched_no_immune_signal</td><td class="n">403</td></tr><tr><td>disease_match</td><td class="n">207</td></tr><tr><td>other_disease</td><td class="n">53</td></tr><tr><td>product_or_procedure</td><td class="n">45</td></tr><tr><td>not_a_disease</td><td class="n">38</td></tr><tr><td>target_or_biomarker</td><td class="n">26</td></tr><tr><td>umbrella</td><td class="n">19</td></tr><tr><td>out_of_scope_decided</td><td class="n">17</td></tr><tr><td>car_t_toxicity</td><td class="n">12</td></tr></tbody></table>
+<p class="sm">已登记 condition 字符串 <b>2407</b> 条，标签分布：</p>
+<div class="ax"><h3>标签分布</h3><ul><li><span>oncology</span><span class="mv">1582</span></li><li><span>unmatched_no_immune_signal</span><span class="mv">407</span></li><li><span>disease_match</span><span class="mv">208</span></li><li><span>other_disease</span><span class="mv">53</span></li><li><span>product_or_procedure</span><span class="mv">45</span></li><li><span>not_a_disease</span><span class="mv">38</span></li><li><span>target_or_biomarker</span><span class="mv">26</span></li><li><span>umbrella</span><span class="mv">19</span></li><li><span>out_of_scope_decided</span><span class="mv">17</span></li><li><span>car_t_toxicity</span><span class="mv">12</span></li></ul></div>
 <p class="sm">疾病名人工队列：待裁定 <b>0</b> 条，
 历史已裁定 1149 条。队列的判据是<b>正信号</b>
 （字符串带免疫词根但未匹配到任何已登记实体），不是「解释不了的字符串」——
@@ -55,13 +57,13 @@
 各类当前状况：<br>· <b>疑似同一实体的申办方写法</b>：待裁定 <b>27</b> 条，累计 49 条。判据：两条申办方原文共有一个全语料罕见的身份 token；实测真合并命中率约 1/22，故只产候选、绝不自动合并<br>· <b>疑似漏检的疾病实体</b>：待裁定 <b>0</b> 条，累计 1149 条。判据：字符串带免疫词根，但未匹配到任何已登记实体
 （申办方那一类的判据与清单见<a href="sponsors.html">申办方</a>页。）</p>
 
-<h2>范围口径（使用者 2026-08-22 决定）</h2>
+<h2 id="scope">范围口径（使用者 2026-08-22 决定）</h2>
 <ul class="sm">
 <li>移植物抗宿主病、实体器官移植排斥、再生障碍性贫血、过敏（哮喘/鼻炎）、
 炎症性肠病伞形标签、化脓性汗腺炎、免疫介导肾病 —— <b>均计入自免</b>。</li>
 <li>AL 型淀粉样变 —— <b>不纳入</b>（浆细胞病，与免疫介导机制不相关）。</li>
 <li>移植后淋巴增殖性疾病（PTLD）—— 归入<b>肿瘤参照</b>（移植后淋巴增殖性肿瘤）。</li>
-<li>肿瘤专属试验 2257 项入库为参照，只存试验骨架。
+<li>肿瘤专属试验 2260 项入库为参照，只存试验骨架。
 留着它们是为了能回答三个问题：同一产品在肿瘤与自免的并行开发路线、
 同一靶点在肿瘤的剂量与清淋先例、CRS/ICANS 的安全性先例
 （这些数据几乎全在肿瘤试验里，而自免适应症可接受的毒性阈值不同）。</li>
@@ -71,28 +73,36 @@
 「自免 CAR 试验数」里含非自身抗原免疫反应的数字。因此每个实体都带类别标签，
 默认全部计入（= 使用者的决定），需要分开看时是一句 SQL 而不是一次重跑。</p>
 
-<h2>引文回放：数字与原文之间那条可执行的链</h2>
+<h2 id="replay">引文回放：数字与原文之间那条可执行的链</h2>
 <p><span class="tag off">未启用</span> 带引文的四张表（交易 / 疗效证据 / 不良事件 / 监管事件）共 <b>0</b> 行。</p><p class="why">引文回放引擎（src/verify/replay.py）已就位，但抽取管线未上线，所以 deal / evidence_record / ae_record / regulatory_event 四张表都是 0 行。这四张表都带 CHECK(locator_replay_ok = 1)：回放不通过的行根本进不了库，不是入库后标记为待核。因此本站今天不输出任何引文级结论 —— 页面上所有数字都来自注册库结构化字段的确定性分类，不来自对原文的阅读。</p><p class="why"><b>因此请不要把本站现有的数字读成「已核对过原文」。</b>它们是注册库结构化字段的确定性分类结果 —— 保证的是「没把 MOGAD 数成 NMOSD」，不是「这个缓解率真的写在那篇文章里」。</p><p class="sm dim">机制本身可以现在就核验：<code>python -m src.audit --replay</code>。四张表为空时它报的是「没有检查对象」而不是「通过」—— 空集不等于通过，与导出前那三道闸同一条规矩。</p>
 
-<h2>已知盲区（是盲区，不是待办）</h2>
+<h2 id="verify">核验状态：这些结论现在还站得住吗</h2>
+<p class="sm">上面那一段问的是「这句引文出自那个字节吗」，这一段问的是
+<b>「支撑这一行的那次抓取还新不新」</b>。两个问题的失效方式正好相反：
+引文回放的结论<b>不随时间漂移</b>（raw 被 sha 钉死），
+而核验状态<b>只随时间漂移</b>。所以它们分成两段，各有各的数字。</p>
+<p><span class="tag live">已启用</span> 已登记 <b>334</b> 个实体，其中试验 <b>334</b>/334 项。</p><p class="why"><b>下面这个日期是抓取时刻，不是检查时刻。</b>支撑这些行的抓取最新为 <b>2026-08-31T01:15:33Z</b>，最早为 2026-08-22T06:58:32Z。这个区别是这张表有没有用的分界线：存「检查跑的时刻」的话，每天跑一次检查就会让所有行永远显示「已核验」 —— 哪怕底下那份数据是一年前抓的。核验层不向注册库发任何请求，它没有资格刷新这个日期。</p><div class="tw"><table><thead><tr><th>实体类别</th><th class="n">行数</th><th>状态分布</th><th>复核期</th></tr></thead><tbody><tr><td>临床试验<span class="xs dim"> trial</span></td><td class="n">334</td><td class="sm">曾可核·已过期 330、出处可核 4</td><td class="sm dim">7 天</td></tr></tbody></table></div><p class="why">核验<b>覆盖不到</b>本站自己推导的列：<code>classification</code>、<code>classification_reason</code>、<code>modality_evidence</code>。它们是本站的分类结果，注册库从没说过这句话 —— 而 <code>classification</code> 恰恰是本站最容易出错、最该被质疑的一列。</p><p class="why">状态 <code>conflicted</code> 这一层<b>写不出来</b>：含义是「两个独立来源对同一字段给出不同取值」。今天每项试验只有 ctgov 一个来源，交易只有 SEC 一个来源，所以这条路径<b>永远不会</b>写出 conflicted。它是 0 的原因是没有第二个来源可比，不是比过了没有分歧。</p><p class="sm dim">覆盖范围：只登记 classification=&#x27;in_scope&#x27; 的试验，加上四张带引文的表。肿瘤参照库的试验<b>不在范围内</b>：它们按设计只存试验骨架、不留快照，登记进来会一律显示成 unverified，而那读起来像「出处断了」，实际是「本站没打算给它留出处」。</p>
+
+<h2 id="blind">已知盲区（是盲区，不是待办）</h2>
 <ul class="sm">
 <li><b>干预名与描述都不含 CAR 字样的产品</b>会漏。需要按产品别名定向扫补，尚未做。</li>
 <li><b>字段级变更史在建库之前永久缺失</b>：ClinicalTrials.gov 的历史修订端点返回 403，
 替代途径已穷尽。本站的字段级比对只能从 2026-08-22 起累积。</li>
 <li><b>中国 CDE / ChiCTR 尚未接入</b>，NMPA 亦未接入。
 候选池里中国申办的试验来自其在 ClinicalTrials.gov 的登记，只登记在国内平台的会漏。</li>
-<li><b>会议摘要（ACR / AAN / ECTRIMS / EBMT）尚未解析。</b>
-其中 acrabstracts.org 的 robots.txt 明确 Disallow 了通用抓取代理，须走人工录入。</li>
+<li><b>会议摘要只解析了 ACR 一个会</b>，AAN / ECTRIMS / EBMT 尚未解析 ——
+三个站各自需要一次实测，本站刻意不把 ACR 的解析器套到它们身上。
+ACR 这一条只存标题、摘要号、引文与链接，<b>不存摘要正文</b>（版权边界）。</li>
 <li><b>中文期刊（万方 / 知网 / 维普）没有公开检索接口</b>，且内容许可不允许再分发，
 文献层完全看不见它们 —— 而中国研究者的相当一部分自免 CAR-T 报告首发在中文刊上。
 这与交易层「非 SEC 申报人看不见」是同一个偏倚方向。</li>
 <li><b>文献层的归属判据在本站不可逐字节回放。</b>
 判定由 Europe PMC 服务端做（TITLE_ABS），而本站用 <code>resultType=lite</code> 抓取、
-库里没有存摘要正文，所以做不到"在本地重放一次短语匹配"。
+库里没有存摘要正文，所以做不到「在本地重放一次短语匹配」。
 因此文献层的归属<b>不进</b>证据表，页面上也不据此给任何疗效结论。</li>
 </ul>
 
-<h2>文献层的口径（与试验层完全不同，不可混读）</h2>
+<h2 id="lit">文献层的口径（与试验层完全不同，不可混读）</h2>
 <p class="sm">试验层数的是<b>试验项数</b>，文献层数的是<b>文献篇数</b>，
 而后者的判据只是「模态短语与病名短语出现在同一篇文献的标题或摘要里」。
 一篇综述的摘要里列举十个适应症，十个病名都会命中 ——
@@ -100,16 +110,80 @@
 <ul class="sm">
 <li><b>预印本与同行评议是两个数，全站不合并。</b>合并成一个「文献 N 篇」
 等于把一批未经同行评议的报告算进同一个证据档位。因此文献表里没有合计行。</li>
-<li><b>「某病 0 篇」有四种来源，只有一种能读成"没有"</b>：管线没跑过 /
+<li><b>「某病 0 篇」有四种来源，只有一种能读成「没有」</b>：管线没跑过 /
 这个病本轮没有一条查询（分类词表里它只剩被筛掉的裸缩写写法）/
 它的查询有没跑完的 / 全部跑完确实没有。每个疾病档案页上写的是这四种中的哪一种。</li>
 <li><b>检索面被一份短语清单封顶</b>，清单外的写法一篇都不会命中。
 已实测的缺口逐条印在<a href="literature.html">文献与预印本</a>页上，带篇数。</li>
-<li><b>纯模态那几条查询在覆盖账里标着"没跑完"，那是主动截断</b>：
+<li><b>纯模态那几条查询在覆盖账里标着「没跑完」，那是主动截断</b>：
 本站只要它们的总数当分母，不取那近两万篇文档。它与「这条查询没跑成」分开计数。</li>
 </ul>
 
-<h2>不做什么</h2>
+<h2 id="cal">口径全表（30 条，这一页不折叠）</h2>
+<p class="sm dim">全站每一个数字旁边都挂着一条口径，形态是一个短标签加一个折叠的长句。
+这一页把那些长句全部摊开，一条不折 —— 因为<b>收起的折叠块打印印不出来</b>，
+纸面上那些数字旁边只剩短标签。要把某一条口径给别人看，指这里的
+<code>#cal-</code> 锚点，而不是让对方自己去某一页展开。</p>
+<p class="sm dim">这一节由同一张表生成，不是另抄一遍。两处口径说法不一致比只有一处糟得多：
+两处都语法通顺，读者没有办法知道该信哪一处。</p>
+<h3 id="cal-only_sum">唯一可相加的总数</h3><p class="sm">按病计数不可相加：一项 7 个适应症的篮式试验会出现在 7 个疾病档案里，把各病的数字相加会得到一个没有意义的总数。这一个数是例外 —— 它按去重后的试验条数计，也是全站唯一可以当作总量引用的那个。</p><h3 id="cal-onc_skeleton">只存骨架·不计入自免</h3><p class="sm">肿瘤试验入库只是为了当参照：只存试验骨架，没有干预名、没有快照、不做疾病分类。所以它既回答不了「同一个 CAR 在肿瘤走到哪一步」，也不许与自免那一侧的试验数相加。</p><h3 id="cal-excluded">判为不在范围</h3><p class="sm">检索命中、但本地分类判定它既不是自免/神经免疫、也不作肿瘤参照的那些。判错的方向是把在范围的判出去 —— 所以这个数越大越该抽查，它不是一个业绩指标。</p><h3 id="cal-entities_hit">0 命中也是一个实体</h3><p class="sm">分母是本站登记的全部疾病实体，分子是今天在注册库里查到过至少一项试验的。两者之差不是「待办」：那些实体本站查过，结果确实是 0，而 0 是观测结果。</p><h3 id="cal-links">连接数 &gt; 试验数</h3><p class="sm">一项篮式试验同时招多个适应症，于是它在每个相关疾病下各留一条连接。所以连接数比试验数大，而这也正是按病计数不可相加的成因：把各病的试验数加起来，等于把同一项篮式试验数了好几遍。</p><h3 id="cal-blind_spots">三处盲区·未覆盖</h3><p class="sm">范围止于公开可核验的登记与披露。已知在盲区内的三类：中国 CDE/ChiCTR 的登记（注册库不同，本站今天不读）；干预名与描述里都不出现 CAR 字样的产品（检索端就漏掉了，本地分类补不回来）；未公开披露的交易条款（只处理公开披露的内容，未披露的一律不猜）。</p><h3 id="cal-feed_states">未启用 ≠ 今天没有</h3><p class="sm">每条流各自标状态，三种「空」在本站长得不一样：「未启用」是本站还没开始采集；「累积中」是在采但还不完整，那个数只是下限；「已启用·该区间 0 条」是采集正常而区间内确实没有记录 —— 只有这一种是观测结果。本站不把任何一种渲染成空白：空白会被读成「这个领域最近没动静」。</p><h3 id="cal-same_company">同公司 ≠ 同产品</h3><p class="sm">两边都出现只说明这家公司在自免与肿瘤同时在做，不说明那是同一个产品的两条路线。按产品答本站今天答不了：肿瘤参照只存试验骨架，库里没有它们的干预名。</p><h3 id="cal-tox_threshold">经验厚 ≠ 可外推</h3><p class="sm">肿瘤侧规模之所以值得看，是因为清淋强度、CRS/ICANS 的处理经验与剂量先例几乎都积累在肿瘤试验里。但自免适应症可接受的毒性阈值与肿瘤<b>不同</b> —— 肿瘤经验厚不等于能直接外推到自免，这一条与本站抓到多少数据无关，是口径问题。</p><h3 id="cal-asof">排版 ≠ 数据时刻</h3><p class="sm">导出可以在没有任何新数据的日子里重跑，那时排版时刻会变而数据时刻不会。做判断一律看「试验数据截至」那一个时刻，不要看排版时刻。</p><h3 id="cal-focused">专病 · 不含篮式</h3><p class="sm">「专病」= 该试验登记的适应症就是本病。篮式试验不算进这个数 —— 把一项 7 个适应症的篮式试验算成本病的专病试验，虚增的正是最受关注的那个数字。</p><h3 id="cal-basket_share">样本量分摊 · 不属本病</h3><p class="sm">篮式试验同时招多个适应症：样本量在各适应症之间分摊，而且多数不预设按适应症的分层分析。所以这些数字属于那些篮子，不属于本病 —— 它们与专病试验的可解读性不同。</p><h3 id="cal-undecided">关系未定 · 还没裁</h3><p class="sm">这些试验的 condition 命中了本病，但连接角色还没有被裁定成专病或篮式。它既不该被当成专病数的一部分，也不该被当成篮式 —— 它是一批待裁定的连接。</p><h3 id="cal-disease_total">按病计数不可相加</h3><p class="sm">本页的合计按去重后的试验条数计，只在本页内成立。它不可与其他疾病页的数字相加：一项篮式试验会同时出现在多个疾病档案里，相加等于把同一项试验数了好几遍。</p><h3 id="cal-rollup">上卷去重 · 不可相加</h3><p class="sm">「含子实体上卷」是把子实体页的试验并进来、再去重之后的条数。所以父实体与子实体那两个数不可相加：同时登记了两者的试验只算一次。</p><h3 id="cal-alias">别名不完整 · 不收亚型名</h3><p class="sm">别名与缩写是人工逐条维护的，而且刻意不收亚型名 —— GPA、皮肌炎、冷抗体型 AIHA 都不作为别名列出，因为亚型是不同的实体。所以 Ctrl+F 找不到某个写法，只说明这份表里没写，不说明本站没有这个病。</p><h3 id="cal-prov_raw">原文逐字 · 判错请报</h3><p class="sm">每一行都给出注册库里的 condition 原文和命中它的那条规则，是为了让你自己判断这些试验算不算本病，而不必信任分类层。任一条判错请写进 config/condition_map.yaml。</p><h3 id="cal-mix_no_total">两栏之间没有合计</h3><p class="sm">专病与篮式两栏之间不给合计，也不给任何一个把两边加起来的数字。这不是版面偏好：把两栏相加的那个式子里，等号左边两项的单位不同 —— 一边是「适应症就是这个病的试验」，另一边是「含这个病的篮子」，而篮子的样本量在各适应症之间分摊。</p><h3 id="cal-umbrella">伞形 · 未指名本病</h3><p class="sm">那些试验只登记了「自身免疫病」这类笼统适应症，没有指名具体实体 —— 所以它们既没被算进本页的任何一个数字，也不能被断定与本病无关。</p><h3 id="cal-phrase_bound">清单外的写法不命中</h3><p class="sm">本病的检索只用这里列出的那几条短语，清单外的写法一篇都不会命中。所以本病的文献篇数是由这几条短语决定的一个下界，不是全世界的文献量。</p><h3 id="cal-scope_all_in">各类别均计入自免</h3><p class="sm">类别标签只是标签，不是范围划分：下列全部类别（含同种免疫、过敏、自身炎症）均计入本站的「自免」口径。按使用者 2026-08-22 的决定保留类别，是为了需要分开看时不必重跑 —— 例如「不含移植相关的自免试验数」是一句 SQL。AL 型淀粉样变按同一决定不纳入（克隆性浆细胞病，非免疫介导）；移植后淋巴增殖性疾病（PTLD）归入肿瘤参照。</p><h3 id="cal-hit_def">有命中含篮式</h3><p class="sm">「有命中」= 该实体在至少一项在范围试验里被登记为适应症，而且<b>含篮式</b> —— 一项 7 个适应症的篮式试验会让 7 个实体同时算「有命中」。所以这个数回答的不是「有多少个病被专门研究过」，那个问题要看各卡片的「专病」那一格。</p><h3 id="cal-zero_observed">观测结果 · 不是缺失</h3><p class="sm">这些实体本站逐个查过，结果是 0 项。0 不等于「还没查」，也不等于「本站没有这个病」—— 各自的页面都在，并且各自说明这个 0 的外推边界。</p><h3 id="cal-deal_pool">单位是文档 · 不是交易</h3><p class="sm">这个数数的是<b>候选文档份数</b>：一份申报可能提到多笔交易，一笔交易也可能被多份申报各提一次。所以它既不是交易数，也不是「有多少家公司在做交易」——它唯一能回答的问题是「有多少份文档进了待读队列」。</p><h3 id="cal-deal_adjudicated">读过原文才落一行</h3><p class="sm">只有已经有人读过原文、并且原文引用能逐字节回放的交易才进这个数（回放不通过的行插不进库，有 CHECK 挡着）。所以它是一个<b>下界</b>，而且它不随候选池一起长 —— 候选池涨一千份，这个数照旧不动。</p><h3 id="cal-attr_never">还没查 ≠ 查过没有</h3><p class="sm">「从未做过归属」是这份文档还没有被查过病名；「查过、一个已登记病名都没出现」是查过、结果确实是没有。两个数在页面上长得一样、含义相反，所以本站既不把它们相加，也不合并成一个「无归属 N 份」。</p><h3 id="cal-channels_declared">渠道数 ≠ 覆盖面</h3><p class="sm">这个数数的是本站<b>声明过</b>的渠道条数。声明过不等于有数据 —— 里面既有正在跑的，也有机制建成、但还没有任何抓取对象的，还有一次都没跑过、甚至还没建成的。哪一条是哪一种，只看每条渠道标题旁边那个状态标签：本站不把「渠道已声明」渲染成「这个渠道有数据」。</p><h3 id="cal-lit_pool">不是分母 · 是本站查到的那一块</h3><p class="sm">这个数是本站库内的文献条数，而「整个 CAR 文献有多大」是另一个数（在下面「分母」那一节里，量级大得多）。拿这个数当分母算出来的任何比例都是错的 —— 它衡量的是本站那几条短语捞到了多少，不是这个领域有多少。</p><h3 id="cal-lit_live_channels">缺席的渠道不产生 0</h3><p class="sm">这一格与旁边那个「声明的渠道」之差，就是本站现在<b>看不见</b>的那几条渠道。它们不产生 0，也不产生任何一行 —— 缺席的方式是「不出现」，读者在清单里不会撞上任何提示。所以这两个数必须并排印。</p><h3 id="cal-lit_unclaimed">衡量的是清单窄 · 不是文献少</h3><p class="sm">伞形宽网捞到、而本站病名清单认领不了的篇数。它会随病名清单变长而变小 —— 也就是说这个数描述的是本站清单有多窄，不是这些文献本身有什么问题。所以它不该被读成「这些文献与自免无关」。</p>
+
+<h2 id="fix">报一条错分类</h2>
+<p class="sm">每个疾病档案的试验表里，每一行都印着注册库的 <code>condition</code> 原文
+和命中它的那条规则。判错了请把那条 <code>condition</code> 原文写进
+<code>config/condition_map.yaml</code>，连同它该归到哪个实体
+——或者「不属于任何已登记实体」，那也是一条裁定。</p>
+<p class="sm">为什么是这个文件而不是改规则：规则给不出结论的字符串本来就走人工裁定，
+而这个文件就是那份裁定的落处，一次改判等于一行文本差异，看得见是谁把哪个字符串判到了哪里。
+直接去改规则会顺带动到别的字符串，而那些字符串的判定没有人复核过 ——
+表现是「修好一条、静默改动几十条」。</p>
+
+<h2 id="deferred">已声明、还没建成（是空表，不是「查过为 0」）</h2>
+<p class="sm dim">下面这些层<b>库里已经有表、一行数据都没有</b>。
+它们与「查过、结果确实是 0」必须分开说，因为两者在页面上长得一模一样：
+一个空表渲染出来就是一个 0。这里列的是<b>会在页面上露出一个 0 的那几层</b>，
+不是库里全部空表的清单。</p>
+<ul class="sm">
+<li><b>已裁定的交易</b>（<code>deal</code>）—— 发现层每晚在跑、候选池在涨，
+裁定层还没有人读过原文。<a href="deals.html">交易情报</a>页上那个 0 是这个意思，
+不是「本领域最近没有交易」。
+公司新闻稿那条渠道的登记表还是空的，先登哪几家可以按本站试验数排出来：
+<code>python -m src.pipeline.company_pr --worklist</code>。</li>
+<li><b>疗效与安全性数据</b>（<code>cohort</code> / <code>cohort_observation</code> /
+<code>endpoint</code> / <code>ae_record</code>）—— 本站今天不存任何队列级结果、
+终点数值或不良事件记录。这就是全站一处疗效结论也不给的原因，
+而不是因为口径谨慎。</li>
+<li><b>产品与产品别名</b>（<code>product</code> / <code>product_alias</code>）——
+所以「同一家公司」问不到「同一个产品」，
+<a href="sponsors.html">申办方</a>页那条口径是这件事的后果，不是一句免责声明。</li>
+<li><b>已核验的阴性结论</b>（<code>verified_negative</code>）——
+「查过、确实没有」今天只在各疾病页上按病陈述，还没有单独物化成可回放的记录。
+也就是说那些 0 的可核验性弱于那些非 0 的数。</li>
+<li><b>监管事件</b>（<code>regulatory_event</code>）、<b>叙述性记录</b>（<code>narrative</code>）、
+<b>证据记录</b>（<code>evidence_record</code>）—— 表已建，一行都没有。</li>
+</ul>
+
+<h2 id="run">运行内务（这一节不改变上面任何一个数字的读法）</h2>
+<p class="sm dim">这一节是从首页横幅搬过来的。它回答的是「今晚采集稳不稳」，
+不回答「这个数字该怎么读」—— 后者一律留在数字旁边，一句也没有搬走。
+⚠️ 数据一旦过期，下面这几个数会<b>同时回到首页横幅上</b>：
+要判断「为什么它停在那个时刻」时，线索必须在眼前，不能在另一页。</p>
+<p class="sm">最近一次<b>刷新过试验数据</b>的成功运行：第 64 次 · 作业 <code>daily</code> · 候选 2911 → 纳入 334。累计刷新过试验数据的成功运行 <b>9</b> 次，过期阈值 48 小时。</p>
+<p class="sm">另有 <b>4</b> 次运行永久停在 <code>status=running</code>，
+未计入任何一侧。它们既没收尾也没标失败（进程被杀、机器休眠都会这样），
+所以本站不能把它们算成成功，也不能算成失败 —— 只能单独报数。</p>
+<p class="sm">另有 <b>30</b> 次成功运行只涉及其他数据层（交易发现），
+<b>它们不刷新试验数据</b>，因此不计入「试验数据截至」那个时刻。
+交易层自己的覆盖账见<a href="deals.html">交易情报</a>。</p>
+<p class="sm">上次试验数据刷新之后，另有 <b>2</b> 次
+只涉及其他数据层的运行失败 —— 不影响试验数字，
+但交易板块的覆盖面可能因此不完整。</p>
+<p class="sm dim">定时任务用的是 <code>/IT</code>（交互式）：
+机器在计划时间休眠或关机时，任务<b>静默不运行</b>，既不失败也不留记录。
+所以「上次成功」与「今天」之间出现空档时，第一个该排除的原因是机器没开机，
+而不是采集失败 —— 这两者在库里长得不一样（后者会进上面那个失败计数）。</p>
+
+<h2 id="wont">不做什么</h2>
 <ul class="sm">
 <li>不处理任何非公开披露信息。交易记录一律要求公开披露渠道，
 且「条款未披露」本身作为结论的一部分保留 —— 省掉它会让读者以为条款已知。</li>
@@ -119,7 +193,7 @@
 
 <footer>
 本页内容由自动管线从公开来源汇编生成，每条结论均可回放至原始字节。<br>汇编、排序与关注点标注是本站的编辑判断，不代表任何机构立场。<br>不含未公开披露信息；不构成投资建议或诊疗建议。
-<p class="xs">试验数据截至 2026-08-23T04:02:46Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
+<p class="xs">试验数据截至 2026-08-31T01:20:54Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
 数字口径见<a href="method.html">口径与盲区</a>。</p>
 </footer>
 </body>

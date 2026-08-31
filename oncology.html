@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- noindex 是刻意的：这是一个自用情报站，不追求搜索收录。
+     要放开收录，删掉下面这一行即可（同时应重新审一遍水印措辞）。 -->
+<meta name="robots" content="noindex">
+<title>肿瘤参照库｜自身免疫 CAR 细胞治疗情报站</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<nav aria-label="板块"><a href="index.html">最新动态</a><a href="diseases/index.html">疾病档案</a><a href="trials.html">全部试验</a><span class="nav-sep" aria-hidden="true">·</span><a href="literature.html">文献与预印本</a><a href="deals.html">交易情报</a><a href="sponsors.html">申办方</a><a href="oncology.html" aria-current="page">肿瘤参照库</a><span class="nav-sep" aria-hidden="true">·</span><a href="method.html">口径与盲区</a></nav>
+
+<h1>肿瘤参照库</h1>
+<p class="dim sm" style="margin-top:.1rem">2260 项肿瘤专属 CAR 试验 · 只存试验骨架 · 与自免数字不可相加</p>
+<section class="hero">
+<div class="banner caution">
+<p style="margin:.1rem 0"><b>本页的每一个数字都只在肿瘤这一侧成立。</b>
+它们与本站的自免试验数<b>不可相加</b> —— 加起来得到的既不是自免试验数，
+也不是肿瘤试验数，而是一个没有对应问题的数。
+自免那一侧的数字在<a href="index.html">最新动态</a>与<a href="diseases/index.html">疾病档案</a>。</p>
+</div></section>
+
+<nav class="toc" aria-label="本页小节"><b>本页小节</b><ol><li><a href="#what">这个库是什么</a></li><li><a href="#criteria">判据</a></li><li><a href="#dist">分布</a></li><li><a href="#sponsors">牵头申办方</a></li><li><a href="#recent">最近更新</a></li><li><a href="#exception">一处例外</a></li></ol></nav>
+<h2 id="what">这个库是什么，不是什么</h2>
+<p class="sm">全量模态扫（不限适应症）捞到的试验里，<b>全部 condition 都是肿瘤</b>的那些，
+入库为参照试验，共 <b>2260</b> 项。它们不参与任何自免计数：
+到疾病实体的连接数是 <b>0</b> 条，这个 0 是刻意的，
+不是还没连 —— 参照试验没有「该病有几项试验」这个口径。</p>
+<p class="sm">留着它们的理由是三个问题。<b>今天答得上 1 个（共 3 个）</b>：</p>
+<div class="tw"><table><thead><tr><th>问题</th><th>能否回答</th><th>依据</th></tr></thead><tbody>
+<tr><td>同一家公司在肿瘤与自免的<b>并行开发</b>路线</td>
+    <td><span class="adj">答得上</span></td>
+    <td class="sm">口径是<b>同一家公司</b>，不是同一个产品。
+    肿瘤参照侧已归并出 566 家公司，见<a
+    href="sponsors.html">申办方</a>页。</td></tr>
+<tr><td>同一靶点在肿瘤的<b>剂量 / 清淋先例</b></td>
+    <td><span class="adj no">答不上</span></td>
+    <td class="sm">要靠干预名人工裁定出靶点与 binder，<code>product</code> 表现有
+    0 行。<b>这是盲区，不是「没有先例」。</b></td></tr>
+<tr><td><b>CRS / ICANS 安全性先例</b></td>
+    <td><span class="adj no">答不上</span></td>
+    <td class="sm">要逐条抽取不良事件，<code>ae_record</code> 表现有
+    0 行。<b>同样是盲区。</b>
+    <b>而且自免适应症可接受的毒性阈值与肿瘤不同</b>，即便抽出来了也不能直接搬 ——
+    这一条与抽没抽到无关，是口径问题。</td></tr>
+</tbody></table></div>
+<p class="why">所以本页是一个<b>入口与清单</b>，不是一份分析。
+把它当成「翻一翻就能找到剂量与毒性」来用，会得到一个没有出处的结论。</p>
+
+<h2 id="criteria">判据：这 2260 项凭什么算肿瘤</h2>
+<div class="ax"><h3>按判据分档</h3><ul><li><span>全部 condition 为肿瘤 -&gt; 参照库骨架</span><span class="mv">2260</span></li></ul></div>
+<p class="sm">判据只有一条，所以能让人自己复核的是<b>那些 condition 原文</b>。
+带 <code>oncology</code> 标签的不同 condition 串共 <b>1582</b> 条，
+下面按涉及试验数列前 30 条（<b>另有 1552 条未列出</b>）。</p>
+<div class="tw"><table><thead><tr><th>condition 原文</th><th class="n">涉及试验</th><th>命中规则</th></tr></thead>
+<tbody><tr><td>Multiple Myeloma</td><td class="n">195</td><td class="xs dim">layer:myeloma</td></tr>
+<tr><td>B-Cell Lymphoma</td><td class="n">83</td><td class="xs dim">layer:lymphoma</td></tr>
+<tr><td>Acute Lymphoblastic Leukemia</td><td class="n">80</td><td class="xs dim">layer:lymphoblastic</td></tr>
+<tr><td>Lymphoma</td><td class="n">77</td><td class="xs dim">layer:lymphoma</td></tr>
+<tr><td>Diffuse Large B Cell Lymphoma</td><td class="n">71</td><td class="xs dim">layer:lymphoma</td></tr>
+<tr><td>Non Hodgkin Lymphoma</td><td class="n">63</td><td class="xs dim">layer:hodgkin</td></tr>
+<tr><td>B-cell Acute Lymphoblastic Leukemia</td><td class="n">58</td><td class="xs dim">layer:lymphoblastic</td></tr>
+<tr><td>Acute Myeloid Leukemia</td><td class="n">56</td><td class="xs dim">layer:leukemia</td></tr>
+<tr><td>Leukemia</td><td class="n">53</td><td class="xs dim">layer:leukemia</td></tr>
+<tr><td>Pancreatic Cancer</td><td class="n">45</td><td class="xs dim">layer:cancer</td></tr>
+<tr><td>Large B-cell Lymphoma</td><td class="n">42</td><td class="xs dim">layer:lymphoma</td></tr>
+<tr><td>Lymphoma, B-Cell</td><td class="n">41</td><td class="xs dim">layer:lymphoma</td></tr>
+<tr><td>B-Cell Non-Hodgkin Lymphoma</td><td class="n">40</td><td class="xs dim">layer:hodgkin</td></tr>
+<tr><td>Mantle Cell Lymphoma</td><td class="n">39</td><td class="xs dim">layer:lymphoma</td></tr>
+<tr><td>Ovarian Cancer</td><td class="n">39</td><td class="xs dim">layer:cancer</td></tr>
+<tr><td>Solid Tumor</td><td class="n">38</td><td class="xs dim">layer:tumor</td></tr>
+<tr><td>Chronic Lymphocytic Leukemia</td><td class="n">37</td><td class="xs dim">layer:lymphocytic</td></tr>
+<tr><td>Follicular Lymphoma</td><td class="n">37</td><td class="xs dim">layer:lymphoma</td></tr>
+<tr><td>Colorectal Cancer</td><td class="n">35</td><td class="xs dim">layer:cancer</td></tr>
+<tr><td>Gastric Cancer</td><td class="n">33</td><td class="xs dim">layer:cancer</td></tr>
+<tr><td>Breast Cancer</td><td class="n">32</td><td class="xs dim">layer:cancer</td></tr>
+<tr><td>Hepatocellular Carcinoma</td><td class="n">29</td><td class="xs dim">layer:carcinoma</td></tr>
+<tr><td>Relapsed Refractory Multiple Myeloma</td><td class="n">29</td><td class="xs dim">layer:myeloma</td></tr>
+<tr><td>B-Cell Leukemia</td><td class="n">28</td><td class="xs dim">layer:leukemia</td></tr>
+<tr><td>Refractory Diffuse Large B-Cell Lymphoma</td><td class="n">28</td><td class="xs dim">layer:lymphoma</td></tr>
+<tr><td>Multiple Myeloma in Relapse</td><td class="n">27</td><td class="xs dim">layer:myeloma</td></tr>
+<tr><td>Lymphoma, Non-Hodgkin</td><td class="n">26</td><td class="xs dim">layer:lymphoma</td></tr>
+<tr><td>Diffuse Large B Cell Lymphoma (DLBCL)</td><td class="n">25</td><td class="xs dim">layer:lymphoma</td></tr>
+<tr><td>Recurrent Diffuse Large B-Cell Lymphoma</td><td class="n">25</td><td class="xs dim">layer:lymphoma</td></tr>
+<tr><td>B-ALL</td><td class="n">24</td><td class="xs dim">layer:all</td></tr></tbody></table></div>
+<p class="why">⚠️ 这一列<b>不做单位换算</b>：一项试验可以有多条 condition，
+所以「涉及试验」这一列相加会大于 2260。</p>
+
+<h2 id="dist">分布</h2>
+<h3>按期别</h3><div class="tw"><table><thead><tr><th>类别</th><th class="n">项数</th><th class="n">占 2260 项</th></tr></thead><tbody><tr><td>I 期</td><td class="n">989</td><td class="n dim">43.8%</td></tr>
+<tr><td>I/II 期</td><td class="n">490</td><td class="n dim">21.7%</td></tr>
+<tr><td>早期 I 期</td><td class="n">292</td><td class="n dim">12.9%</td></tr>
+<tr><td>II 期</td><td class="n">269</td><td class="n dim">11.9%</td></tr>
+<tr><td>不适用（未分期）</td><td class="n">174</td><td class="n dim">7.7%</td></tr>
+<tr><td>III 期</td><td class="n">30</td><td class="n dim">1.3%</td></tr>
+<tr><td>II/III 期</td><td class="n">12</td><td class="n dim">0.5%</td></tr>
+<tr><td>IV 期</td><td class="n">4</td><td class="n dim">0.2%</td></tr></tbody></table></div>
+<h3>按当前状态</h3><div class="tw"><table><thead><tr><th>类别</th><th class="n">项数</th><th class="n">占 2260 项</th></tr></thead><tbody><tr><td>招募中</td><td class="n">756</td><td class="n dim">33.5%</td></tr>
+<tr><td>状态未知</td><td class="n">574</td><td class="n dim">25.4%</td></tr>
+<tr><td>尚未招募</td><td class="n">239</td><td class="n dim">10.6%</td></tr>
+<tr><td>进行中·不再招募</td><td class="n">222</td><td class="n dim">9.8%</td></tr>
+<tr><td>已完成</td><td class="n">213</td><td class="n dim">9.4%</td></tr>
+<tr><td>已终止</td><td class="n">144</td><td class="n dim">6.4%</td></tr>
+<tr><td>已撤回</td><td class="n">76</td><td class="n dim">3.4%</td></tr>
+<tr><td>已暂停</td><td class="n">29</td><td class="n dim">1.3%</td></tr>
+<tr><td>邀请入组</td><td class="n">7</td><td class="n dim">0.3%</td></tr></tbody></table></div>
+<h3>按申办方类型</h3><div class="tw"><table><thead><tr><th>类别</th><th class="n">项数</th><th class="n">占 2260 项</th></tr></thead><tbody><tr><td>研究者/学术机构</td><td class="n">1473</td><td class="n dim">65.2%</td></tr>
+<tr><td>企业</td><td class="n">700</td><td class="n dim">31.0%</td></tr>
+<tr><td>政府</td><td class="n">78</td><td class="n dim">3.5%</td></tr>
+<tr><td>other</td><td class="n">9</td><td class="n dim">0.4%</td></tr></tbody></table></div>
+<div class="ax"><h3>按首次登记年份 —— 用途是「肿瘤这条先例线有多长」，不是「今年热不热」</h3><ul><li><span>2026</span><span class="mv">255</span></li><li><span>2025</span><span class="mv">301</span></li><li><span>2024</span><span class="mv">263</span></li><li><span>2023</span><span class="mv">234</span></li><li><span>2022</span><span class="mv">243</span></li><li><span>2021</span><span class="mv">176</span></li><li><span>2020</span><span class="mv">198</span></li><li><span>2019</span><span class="mv">155</span></li><li><span>2018</span><span class="mv">124</span></li><li><span>2017</span><span class="mv">116</span></li><li><span>2016</span><span class="mv">86</span></li><li><span>2015</span><span class="mv">37</span></li><li><span>2014</span><span class="mv">24</span></li><li><span>2013</span><span class="mv">13</span></li><li><span>2012</span><span class="mv">9</span></li><li><span>2011</span><span class="mv">7</span></li><li><span>2010</span><span class="mv">8</span></li><li><span>2009</span><span class="mv">5</span></li><li><span>2007</span><span class="mv">3</span></li><li><span>2006</span><span class="mv">1</span></li><li><span>2004</span><span class="mv">1</span></li><li><span>2003</span><span class="mv">1</span></li></ul></div>
+<h3>按国家/地区（可相加大于试验数：多国试验重复计入）</h3>
+<p class="sm">China <b>1206</b> · United States <b>707</b> · Australia <b>68</b> · Spain <b>67</b> · France <b>65</b> · Canada <b>61</b> · Germany <b>59</b> · United Kingdom <b>59</b> · Italy <b>44</b> · Netherlands <b>40</b> · Japan <b>36</b> · Belgium <b>32</b> · Israel <b>28</b> · South Korea <b>23</b></p>
+<p class="why">⚠️ 只列试验数最多的 14 个，
+另有 36 个国家/地区未列出。
+截断必须说出来：不说的话，这一行看起来就是「参照库只覆盖这些地方」。</p>
+
+<h2 id="sponsors">牵头申办方（肿瘤参照侧前 25 家，共 566 家）</h2>
+<div class="tw"><table><thead><tr><th>申办方</th><th>类型</th><th class="n">肿瘤参照</th>
+<th class="n">自免</th></tr></thead><tbody><tr><td>Zhejiang University</td><td class="xs">研究者/学术机构</td><td class="n">68</td><td class="n">16</td></tr>
+<tr><td>Institute of Hematology &amp; Blood Diseases Hospital, China</td><td class="xs">研究者/学术机构</td><td class="n">58</td><td class="n">11</td></tr>
+<tr><td>Chinese PLA General Hospital</td><td class="xs">研究者/学术机构</td><td class="n">46</td><td class="n">5</td></tr>
+<tr><td>University of Pennsylvania</td><td class="xs">研究者/学术机构</td><td class="n">43</td><td class="n">0</td></tr>
+<tr><td>Chongqing Precision Biotech Co., Ltd</td><td class="xs">企业</td><td class="n">42</td><td class="n">8</td></tr>
+<tr><td>Baylor College of Medicine</td><td class="xs">研究者/学术机构</td><td class="n">40</td><td class="n">0</td></tr>
+<tr><td>The First Affiliated Hospital of Soochow University</td><td class="xs">研究者/学术机构</td><td class="n">39</td><td class="n">2</td></tr>
+<tr><td>Hebei Senlang Biotechnology Inc., Ltd.</td><td class="xs">企业</td><td class="n">37</td><td class="n">1</td></tr>
+<tr><td>National Cancer Institute (NCI)</td><td class="xs">政府</td><td class="n">37</td><td class="n">0</td></tr>
+<tr><td>Shenzhen Geno-Immune Medical Institute</td><td class="xs">研究者/学术机构</td><td class="n">37</td><td class="n">2</td></tr>
+<tr><td>M.D. Anderson Cancer Center</td><td class="xs">研究者/学术机构</td><td class="n">36</td><td class="n">1</td></tr>
+<tr><td>PersonGen BioTherapeutics (Suzhou) Co., Ltd.</td><td class="xs">企业</td><td class="n">34</td><td class="n">4</td></tr>
+<tr><td>Beijing Biotech</td><td class="xs">企业</td><td class="n">31</td><td class="n">1</td></tr>
+<tr><td>City of Hope Medical Center</td><td class="xs">研究者/学术机构</td><td class="n">30</td><td class="n">2</td></tr>
+<tr><td>Memorial Sloan Kettering Cancer Center</td><td class="xs">研究者/学术机构</td><td class="n">29</td><td class="n">0</td></tr>
+<tr><td>Kite, A Gilead Company</td><td class="xs">企业</td><td class="n">28</td><td class="n">2</td></tr>
+<tr><td>Second Affiliated Hospital, Zhejiang University, School of Medicine</td><td class="xs">研究者/学术机构</td><td class="n">26</td><td class="n">2</td></tr>
+<tr><td>Union Hospital, Tongji Medical College, Huazhong University of Science and Technology</td><td class="xs">研究者/学术机构</td><td class="n">25</td><td class="n">16</td></tr>
+<tr><td>Beijing Immunochina Medical Science &amp; Technology Co., Ltd.</td><td class="xs">企业</td><td class="n">23</td><td class="n">3</td></tr>
+<tr><td>Ruijin Hospital</td><td class="xs">研究者/学术机构</td><td class="n">21</td><td class="n">0</td></tr>
+<tr><td>UNC Lineberger Comprehensive Cancer Center</td><td class="xs">研究者/学术机构</td><td class="n">21</td><td class="n">0</td></tr>
+<tr><td>Fred Hutchinson Cancer Center</td><td class="xs">研究者/学术机构</td><td class="n">19</td><td class="n">0</td></tr>
+<tr><td>Peking University</td><td class="xs">研究者/学术机构</td><td class="n">19</td><td class="n">0</td></tr>
+<tr><td>Seattle Children&#x27;s Hospital</td><td class="xs">研究者/学术机构</td><td class="n">18</td><td class="n">1</td></tr>
+<tr><td>Novartis Pharmaceuticals</td><td class="xs">企业</td><td class="n">16</td><td class="n">8</td></tr></tbody></table></div>
+<p class="why">⚠️ 最后两列<b>永不相加</b>。同一集团的不同写法<b>未合并</b>
+（实测判据真合并命中率约 1/22，不敢自动合并），所以这里的数字偏细：
+一家集团可能拆成几行。判据与待裁定清单见<a href="sponsors.html">申办方</a>页。</p>
+
+<h2 id="recent">最近更新的 40 项</h2>
+<p class="sm">按注册库最近更新日排序。<b>只列 40 项，
+另有 2220 项未列出</b> —— 参照库没有逐病档案页，
+所以这里不提供全量浏览；要按靶点或产品查，得等 <code>product</code> 抽取上线。</p>
+<div class="tw"><table><thead><tr><th>试验</th><th>期别</th><th>状态</th><th>申办方</th>
+<th class="n">注册库最近更新</th></tr></thead><tbody><tr><td><a href="https://clinicaltrials.gov/study/NCT01087294" rel="noopener">NCT01087294</a><div class="xs dim">Administration of Anti-CD19-Chimeric-Antigen-Receptor-Transduced T Cells From the Original Transplant Donor to Patients With Recurrent or Persistent B-Cell Malignancies After Allogeneic Stem Cell Transplantation</div></td><td>I 期</td><td>已完成</td><td>National Cancer Institute (NCI)<div class="xs dim">政府 · United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT04530565" rel="noopener">NCT04530565</a><div class="xs dim">A Phase III Randomized Trial of Steroids + Tyrosine Kinase Inhibitor (TKI) Induction With Chemotherapy or Blinatumomab for Newly Diagnosed BCR-ABL-Positive Acute Lymphoblastic Leukemia (ALL) in Adults</div></td><td>III 期</td><td>进行中·不再招募</td><td>National Cancer Institute (NCI)<div class="xs dim">政府 · Israel、Puerto Rico、United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT04923893" rel="noopener">NCT04923893</a><div class="xs dim">A Phase 3 Randomized Study Comparing Bortezomib, Lenalidomide and Dexamethasone (VRd) Followed by Ciltacabtagene Autoleucel, a Chimeric Antigen Receptor T Cell (CAR-T) Therapy Directed Against BCMA Versus Bortezomib, Lenalidomide, and Dexamethasone (VRd) Followed by Lenalidomide and Dexamethasone (Rd) Therapy in Participants With Newly Diagnosed Multiple Myeloma for Whom Hematopoietic Stem Cell Transplant is Not Planned as Initial Therapy</div></td><td>III 期</td><td>进行中·不再招募</td><td>Janssen Research &amp; Development, LLC<div class="xs dim">企业 · Argentina、Australia、Austria、Belgium、Brazil、Canada、Czechia、Denmark、Finland、France、Germany、Greece、Hungary、Ireland、Israel、Japan、Netherlands、Norway、Poland、Portugal、South Korea、Spain、Sweden、Switzerland、United Kingdom、United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT04989803" rel="noopener">NCT04989803</a><div class="xs dim">A Phase 1/2 Open-label, Multicenter Study Evaluating the Safety and Efficacy of KITE-363 or KITE-753, Autologous Anti-CD19/CD20 CAR T-cell Therapies, in Subjects With Relapsed and/or Refractory B-cell Lymphoma</div></td><td>I/II 期</td><td>招募中</td><td>Kite, A Gilead Company<div class="xs dim">企业 · Australia、Canada、Germany、Netherlands、United Kingdom、United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT05201781" rel="noopener">NCT05201781</a><div class="xs dim">Long-term Follow-up Study for Participants Previously Treated With Ciltacabtagene Autoleucel</div></td><td>IV 期</td><td>招募中</td><td>Janssen Research &amp; Development, LLC<div class="xs dim">企业 · Belgium、China、France、Israel、Japan、Netherlands、Spain、United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT05421663" rel="noopener">NCT05421663</a><div class="xs dim">A Phase 1b/2, Multicenter, Open-label, Study of JNJ-90014496, an Autologous CD19/CD20 Bi-specific CAR-T Cell Therapy in Adult Participants With B-cell Non-Hodgkin Lymphoma</div></td><td>I/II 期</td><td>进行中·不再招募</td><td>Janssen Research &amp; Development, LLC<div class="xs dim">企业 · Australia、Canada、Denmark、Netherlands、South Korea、Spain、United Kingdom、United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT05621291" rel="noopener">NCT05621291</a><div class="xs dim">A Multicenter Study to Evaluate Next-Generation Sequencing (NGS) Testing and Monitoring of B-Cell Recovery to Guide Management Following Chimeric Antigen Receptor T-cell (CART) Induced Remission in Children and Young Adults With B Lineage Acute Lymphoblastic Leukemia</div></td><td>不适用（未分期）</td><td>招募中</td><td>National Cancer Institute (NCI)<div class="xs dim">政府 · United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT05784441" rel="noopener">NCT05784441</a><div class="xs dim">A Phase 1b Multicenter, Open-Label, Study of JNJ-90009530, an Autologous Anti-CD20 CAR-T Cell Therapy in Adult Participants With Relapsed or Refractory B-Cell Non-Hodgkin Lymphoma</div></td><td>I 期</td><td>进行中·不再招募</td><td>Janssen Research &amp; Development, LLC<div class="xs dim">企业 · Australia、Israel、United Kingdom、United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT06550895" rel="noopener">NCT06550895</a><div class="xs dim">A Phase 2, Open-Label, Multicenter Study of Ciltacabtagene Autoleucel and Talquetamab for the Treatment of Participants With High-Risk Multiple Myeloma</div></td><td>II 期</td><td>进行中·不再招募</td><td>Janssen Research &amp; Development, LLC<div class="xs dim">企业 · Australia、United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT06690827" rel="noopener">NCT06690827</a><div class="xs dim">Clinical Study of CD123 Targeting Chimeric Antigen Receptor NK Cells (CAR-NK) in the Treatment of Relapse/Refractory Acute Myeloid Leukemia (AML)or Blastic Plasmacytoid Dendritic Cell Neoplasm(BPDCN)</div></td><td>I 期</td><td>招募中</td><td>Chongqing Precision Biotech Co., Ltd<div class="xs dim">企业 · China</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT06784726" rel="noopener">NCT06784726</a><div class="xs dim">Odronextamab for Relapsed/Refractory Large B-Cell Lymphomas Before Definitive Lymphoma-Directed Therapies</div></td><td>II 期</td><td>招募中</td><td>University of Washington<div class="xs dim">研究者/学术机构 · United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT07075185" rel="noopener">NCT07075185</a><div class="xs dim">A Phase 1 Study to Evaluate the Safety of KLN-1010, a Novel, In Vivo Gene Therapy to Generate Anti-B Cell Maturation Antigen (Anti-BCMA) Chimeric Antigen Receptor-T Cells (CAR-T) in Patients With Relapsed and Refractory Multiple Myeloma</div></td><td>I 期</td><td>招募中</td><td>Kelonia Therapeutics, Inc.<div class="xs dim">企业 · Australia、United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT07186192" rel="noopener">NCT07186192</a><div class="xs dim">Digital Health Intervention for Self-Management and Telemonitoring in Chimeric Antigen Receptor-T Cell (CAR-T)Therapy</div></td><td>III 期</td><td>招募中</td><td>City of Hope Medical Center<div class="xs dim">研究者/学术机构 · United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT07257419" rel="noopener">NCT07257419</a><div class="xs dim">CD45RA-depleted CD19-CAR T Cell Consolidation After TCRαβ+/CD19 B Cell-depleted Haploidentical Hematopoietic Cell Transplantation for Relapsed/Refractory CD19+ ALL and Lymphoma</div></td><td>I 期</td><td>招募中</td><td>St. Jude Children&#x27;s Research Hospital<div class="xs dim">研究者/学术机构 · United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT07284433" rel="noopener">NCT07284433</a><div class="xs dim">A Single-arm, Multicenter, Open-label, Phase I/II Trial of Allo-QuadCAR01-T, an Allogeneic CAR-T-cell Therapy Targeting CD19 and CD20, for the Treatment of Relapsed or Refractory B-cell Malignancies</div></td><td>I/II 期</td><td>招募中</td><td>AvenCell Therapeutics, Inc.<div class="xs dim">企业 · Germany、United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT07509034" rel="noopener">NCT07509034</a><div class="xs dim">A Phase I Study to Assess the Safety and Antitumor Activity of Autologous B7-H3 Chimeric Antigen Receptor T Cells in Previously Treated Extensive-Stage Small Cell Lung Cancer With Recurrent or Refractory Disease</div></td><td>I 期</td><td>尚未招募</td><td>National Cancer Institute (NCI)<div class="xs dim">政府 · United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT07543055" rel="noopener">NCT07543055</a><div class="xs dim">A Phase 1, Open-Label, Dose-Escalation Study of BPX-601, an Anti-PSCA CAR T Cell Drug Product, in Relapsed/Refractory Metastatic Castration-Resistant Prostate Cancer</div></td><td>I 期</td><td>招募中</td><td>Regeneron Pharmaceuticals<div class="xs dim">企业 · United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT07572136" rel="noopener">NCT07572136</a><div class="xs dim">Phase I Dose Escalation Study of Anti-CRLF2-R/TSLPR Chimeric Antigen Receptor T Cells (TSLPR-CART) in Participants With Recurrent or Refractory CRLF2-R/TSLPR-Overexpressing B-cell Acute Lymphoblastic Leukemia (B-ALL)</div></td><td>I 期</td><td>尚未招募</td><td>National Cancer Institute (NCI)<div class="xs dim">政府 · United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT07783477" rel="noopener">NCT07783477</a><div class="xs dim">A Phase I Trial for R/R MetAstatic DLL3+ Cancers Utilizing Armored CAR T Cells (ARMADA)</div></td><td>I 期</td><td>尚未招募</td><td>Memorial Sloan Kettering Cancer Center<div class="xs dim">研究者/学术机构 · United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT07793435" rel="noopener">NCT07793435</a><div class="xs dim">A Phase 1/2 Trial of ADI-212 (Engineered γδ Chimeric Antigen Receptor [CAR] Vδ1 T Cells Targeting PSMA) in Adults With Metastatic Castration-Resistant Prostate Cancer (mCRPC)</div></td><td>I/II 期</td><td>尚未招募</td><td>Adicet Therapeutics<div class="xs dim">企业 · United States</div></td><td class="n">2026-08-28</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT03271632" rel="noopener">NCT03271632</a><div class="xs dim">Multiple Antigen-specific CAR T Cells For the Treatment of Multiple Myeloma</div></td><td>I/II 期</td><td>尚未招募</td><td>Shenzhen Geno-Immune Medical Institute<div class="xs dim">研究者/学术机构 · China</div></td><td class="n">2026-08-27</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT04464200" rel="noopener">NCT04464200</a><div class="xs dim">A Phase I Study of CD19-Targeted 19(T2)28z1xx Chimeric Antigen Receptor (CAR) Modified T Cells in Adult Patients With Relapsed or Refractory B-cell Malignancies</div></td><td>I 期</td><td>进行中·不再招募</td><td>Memorial Sloan Kettering Cancer Center<div class="xs dim">研究者/学术机构 · United States</div></td><td class="n">2026-08-27</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT04696731" rel="noopener">NCT04696731</a><div class="xs dim">A Phase 1A/1B Multicenter Study Evaluating the Safety and Efficacy of ALLO-316 With Cyclophosphamide/Fludarabine Lymphodepletion Alone or Including ALLO-647 in Subjects With Advanced or Metastatic Clear Cell Renal Cell Carcinoma (ccRCC)</div></td><td>I 期</td><td>进行中·不再招募</td><td>Allogene Therapeutics<div class="xs dim">企业 · United States</div></td><td class="n">2026-08-27</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT05836896" rel="noopener">NCT05836896</a><div class="xs dim">A Phase I Trial to Establish the Safety and Maximum Tolerated Dose of High-affinity Autologous BCMA-targeting CAR T-cells in Patients With Relapsed and Refractory B-cell Malignancies</div></td><td>I 期</td><td>招募中</td><td>Technische Universität Dresden<div class="xs dim">研究者/学术机构 · Germany</div></td><td class="n">2026-08-27</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT05995041" rel="noopener">NCT05995041</a><div class="xs dim">Universal CAR T Cells for the Treatment of Acute Myeloid Leukemia</div></td><td>I 期</td><td>尚未招募</td><td>Shenzhen Geno-Immune Medical Institute<div class="xs dim">研究者/学术机构 · China</div></td><td class="n">2026-08-27</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT06429150" rel="noopener">NCT06429150</a><div class="xs dim">Frontline Management of High-Risk Multiple Myeloma or Plasmacytoma With BCMA and GPRC5D Combination CAR-T Cell Therapy</div></td><td>I/II 期</td><td>尚未招募</td><td>Shenzhen Geno-Immune Medical Institute<div class="xs dim">研究者/学术机构 · China</div></td><td class="n">2026-08-27</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT06435910" rel="noopener">NCT06435910</a><div class="xs dim">Engineered Dendritic Cell Vaccines for Remission Maintenance in Multiple Myeloma Patients</div></td><td>I 期</td><td>尚未招募</td><td>Shenzhen Geno-Immune Medical Institute<div class="xs dim">研究者/学术机构 · China</div></td><td class="n">2026-08-27</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT06739226" rel="noopener">NCT06739226</a><div class="xs dim">Combination of CARTs, CTLs and DC Vaccines Targeting Melanoma</div></td><td>I/II 期</td><td>尚未招募</td><td>Shenzhen Geno-Immune Medical Institute<div class="xs dim">研究者/学术机构 · China</div></td><td class="n">2026-08-27</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT07443137" rel="noopener">NCT07443137</a><div class="xs dim">Rapcabtagene Autoleucel for Eradication of Measurable Residual Disease in Large B-Cell Lymphoma (LBCL)</div></td><td>I 期</td><td>尚未招募</td><td>Stanford University<div class="xs dim">研究者/学术机构 · —</div></td><td class="n">2026-08-27</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT07544589" rel="noopener">NCT07544589</a><div class="xs dim">A Phase 1 Study to Evaluate the Safety and Efficacy of DISP-10 in Participants With Advanced Gastrointestinal Cancers</div></td><td>I 期</td><td>招募中</td><td>Dispatch Biotherapeutics<div class="xs dim">企业 · United States</div></td><td class="n">2026-08-27</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT07681596" rel="noopener">NCT07681596</a><div class="xs dim">A Modular, Phase I/II, Open-label, Multicentre Study to Evaluate the Safety, Tolerability, Cellular Kinetics, and Efficacy of AZD4045, an Allogeneic Chimeric Antigen Receptor-T Cell (CAR-T) Therapy Targeting B Cell Maturation Antigen (BCMA) in Participants With Relapsed or Refractory Multiple Myeloma</div></td><td>I/II 期</td><td>招募中</td><td>AstraZeneca<div class="xs dim">企业 · Australia、United States</div></td><td class="n">2026-08-27</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT02159495" rel="noopener">NCT02159495</a><div class="xs dim">Phase I Study of Cellular Immunotherapy Using T Cells Lentivirally Transduced to Express a CD123-Specific, Hinge-Optimized, CD28-Costimulatory Chimeric Antigen Receptor and a Truncated EGFR for Patients With CD123+ Relapsed/Refractory Acute Myeloid Leukemia and Persistent/Recurrent Blastic Plasmacytoid Dendritic Cell Neoplasm</div></td><td>I 期</td><td>进行中·不再招募</td><td>City of Hope Medical Center<div class="xs dim">研究者/学术机构 · United States</div></td><td class="n">2026-08-26</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT03222674" rel="noopener">NCT03222674</a><div class="xs dim">Multi-center Phase I/II Clinical Trial of Multi-CAR T Cell Therapy for Acute Myeloid Leukemia</div></td><td>I/II 期</td><td>尚未招募</td><td>Shenzhen Geno-Immune Medical Institute<div class="xs dim">研究者/学术机构 · China</div></td><td class="n">2026-08-26</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT03356782" rel="noopener">NCT03356782</a><div class="xs dim">Safety and Efficacy Evaluation of 4th Generation Safety-engineered CAR T Cells Targeting Sarcomas</div></td><td>I/II 期</td><td>尚未招募</td><td>Shenzhen Geno-Immune Medical Institute<div class="xs dim">研究者/学术机构 · China</div></td><td class="n">2026-08-26</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT03356808" rel="noopener">NCT03356808</a><div class="xs dim">Multicenter Trial of Cancer Antigen-specific T Cells in the Treatment of Lung Cancer</div></td><td>I/II 期</td><td>尚未招募</td><td>Shenzhen Geno-Immune Medical Institute<div class="xs dim">研究者/学术机构 · China</div></td><td class="n">2026-08-26</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT04016129" rel="noopener">NCT04016129</a><div class="xs dim">CART Immunotherapy Targeting CD19 Negative Acute Lymphoblastic Leukemia</div></td><td>I/II 期</td><td>尚未招募</td><td>Shenzhen Geno-Immune Medical Institute<div class="xs dim">研究者/学术机构 · China</div></td><td class="n">2026-08-26</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT04033302" rel="noopener">NCT04033302</a><div class="xs dim">A Multi-Center Study of Multiple CAR T Cell Therapy for CD7-positive Hematological Malignancies</div></td><td>I/II 期</td><td>尚未招募</td><td>Shenzhen Geno-Immune Medical Institute<div class="xs dim">研究者/学术机构 · China</div></td><td class="n">2026-08-26</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT04288726" rel="noopener">NCT04288726</a><div class="xs dim">A Phase 1 Study Evaluating the Safety and Activity of Allogeneic CD30 Chimeric Antigen Receptor Epstein-Barr Virus-Specific T Lymphocytes (CD30.CAR-EBVSTs) in Patients With Relapsed or Refractory CD30-Positive Lymphomas</div></td><td>I 期</td><td>进行中·不再招募</td><td>Baylor College of Medicine<div class="xs dim">研究者/学术机构 · United States</div></td><td class="n">2026-08-26</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT04429438" rel="noopener">NCT04429438</a><div class="xs dim">Primary, Booster and Consolidation Multi-CAR-T Cell Therapy for the Treatment of Refractory B Cell Lymphomas</div></td><td>I/II 期</td><td>尚未招募</td><td>Shenzhen Geno-Immune Medical Institute<div class="xs dim">研究者/学术机构 · China</div></td><td class="n">2026-08-26</td></tr>
+<tr><td><a href="https://clinicaltrials.gov/study/NCT04429451" rel="noopener">NCT04429451</a><div class="xs dim">Phase I/II Clinical Trial of 4SCAR-PSMA T Cell Therapy Targeting PSMA Positive Malignancies</div></td><td>I/II 期</td><td>尚未招募</td><td>Shenzhen Geno-Immune Medical Institute<div class="xs dim">研究者/学术机构 · China</div></td><td class="n">2026-08-26</td></tr></tbody></table></div>
+<p class="why">⚠️ 试验号链到 ClinicalTrials.gov，<b>不链到本站的疾病页</b> ——
+参照试验没有疾病连接，链过去是死路。</p>
+
+<h2 id="exception">一处例外，必须说明</h2>
+<p class="sm">这 2260 项里有 <b>10</b> 项存有
+<code>trial_snapshot</code>（字段级历史快照），其余没有。
+<b>这不表示参照库也抓细节</b>：那 10 项原本是 in_scope，
+使用者 2026-08-22 更正「AL 淀粉样变与 PTLD 归 oncology_reference」之后被改了过来，
+快照是它们在 in_scope 期间留下的。指望在其余 2250 项里
+找到同样的深度会落空。</p>
+
+<footer>
+本页内容由自动管线从公开来源汇编生成，每条结论均可回放至原始字节。<br>汇编、排序与关注点标注是本站的编辑判断，不代表任何机构立场。<br>不含未公开披露信息；不构成投资建议或诊疗建议。
+<p class="xs">试验数据截至 2026-08-31T01:20:54Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
+数字口径见<a href="method.html">口径与盲区</a>。</p>
+</footer>
+</body>
+</html>

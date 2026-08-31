@@ -1,43 +1,384 @@
-:root { color-scheme: light dark; --line:#e5e7eb; --dim:#6b7280; --bg2:#f9fafb;
-        --p1:#b45309; --ok:#047857; --warn:#b91c1c }
+:root { color-scheme: light dark;
+        --bg:#ffffff; --fg:#111827; --bg2:#f9fafb;
+        --line:#e5e7eb; --line2:#d1d5db; --dim:#6b7280;
+        /* 语义色。⚠️ --p1 保留原名原值：它是 .tag.off 在用的那一个，
+           改名会让某处标签静默失去颜色。 */
+        --p1:#b45309; --ok:#047857; --caution:#b45309; --warn:#b91c1c;
+        /* 焦点框刻意用一个**不承担任何状态语义**的蓝：
+           拿 --ok 当焦点色的话，键盘用户 tab 过去时每个元件都会闪一下"成功"的绿。 */
+        --focus:#1d4ed8;
+        --f0:.74rem; --f1:.8rem; --f2:.82rem; --f3:.87rem; --f4:.9rem;
+        --f5:.98rem; --f6:1.12rem; --f7:1.45rem;
+        --s1:.25rem; --s2:.4rem; --s3:.6rem; --s4:.9rem; --s5:1.4rem;
+        --s6:2.4rem; --s7:3.5rem }
 @media (prefers-color-scheme: dark) {
-  :root { --line:#374151; --dim:#9ca3af; --bg2:#111827 } }
+  :root { --bg:#0b0f19; --fg:#e5e7eb; --bg2:#111827;
+          --line:#374151; --line2:#4b5563; --dim:#9ca3af;
+          /* 暗底上原来那几个深色边框几乎看不见 —— 语义色必须跟着换一档亮度，
+             否则"红边=不可采信"这条信息在暗色模式下等于没印。 */
+          --p1:#d97706; --ok:#34d399; --caution:#fbbf24; --warn:#f87171;
+          --focus:#60a5fa } }
 * { box-sizing: border-box }
 body { max-width: 62rem; margin: 0 auto; padding: 1.5rem 1.1rem 5rem;
-       font: 15.5px/1.7 -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif }
+       background: var(--bg); color: var(--fg);
+       font: 15.5px/1.7 -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+       /* 全宽标点的内建空白。「」『』（）等字形自带约半个字宽的留白，
+          正文里连着汉字排时会开出一道肉眼可见的缝 —— B7 把全站的引号统一到「」
+          之后这件事从零星变成了满页，所以在这里收一次。
+          ⚠️ 诚实说明两件事，别让后面的人以为这里量过：
+            1. 本机**没有**验证浏览器支持情况。不认识这个属性的浏览器会整条丢弃
+               声明，渲染结果与改动前逐像素相同 —— 所以它是零风险的渐进增强，
+               而不是一个需要回退方案的排版依赖。任何"必须靠它才对"的版式
+               都不许建立在这一行上。
+            2. 取 trim-start 而不是 normal：normal 是规范里的初始值，写上去等于
+               什么都没说。trim-start 按规范会削掉开引号那一侧的内建空白，
+               也正是「 在句中最扎眼的那一侧。至于具体削掉多少、以及各家实现
+               是否一致，同样没量过。 */
+       text-spacing-trim: trim-start }
 a { color: inherit; text-decoration-color: var(--dim); text-underline-offset: 2px }
-h1 { font-size: 1.45rem; margin: .3rem 0 .1rem }
-h2 { font-size: 1.12rem; margin: 2.4rem 0 .6rem; padding-bottom: .3rem;
+a:hover { text-decoration-color: currentColor }
+/* ⚠️ 只用 :focus-visible，不用 :focus：后者会让鼠标点击也留下一个框。
+   而完全删掉焦点框（某些"美化"的第一刀）等于让键盘操作变成盲操。 */
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px }
+h1 { font-size: var(--f7); margin: .3rem 0 .1rem }
+h2 { font-size: var(--f6); margin: var(--s6) 0 var(--s3); padding-bottom: var(--s1);
      border-bottom: 1px solid var(--line) }
-h3 { font-size: .98rem; margin: 1.5rem 0 .4rem }
-nav { font-size: .9rem; padding-bottom: .8rem; border-bottom: 1px solid var(--line);
-      margin-bottom: 1.1rem }
-nav a { margin-right: 1rem }
+h3 { font-size: var(--f5); margin: var(--s5) 0 var(--s2) }
+/* 导航：8 个链接 + 两个组分隔符。⚠️ 用 flex + gap 而不是 `margin-right`：
+   手机上 8 个链接必然折行，而 margin-right 折行后**行与行之间没有间距**，
+   两行链接会挤成一团（上一行的下缘紧贴下一行的上缘），点中相邻项的概率明显变高。 */
+nav { font-size: var(--f4); padding-bottom: var(--s4); border-bottom: 1px solid var(--line);
+      margin-bottom: 1.1rem; display: flex; flex-wrap: wrap;
+      align-items: baseline; gap: var(--s2) var(--s4) }
+/* 当前页：字重 + 下划线两个通道，**不靠颜色**。
+   ⚠️ 选择器打在 [aria-current] 上而不是一个 .cur 类：这样"看起来是当前页"与
+      "被读屏软件读成当前页"永远不可能分叉 —— 少写一个属性两边一起失效，
+      而不是视觉上高亮着、辅助技术里没有。 */
+nav a[aria-current] { font-weight: 700; text-decoration-thickness: 2px;
+                      text-underline-offset: 3px }
+.nav-sep { color: var(--line2) }
+/* 面包屑：只有二级页有。它与 nav 的区别是"我在哪一层"而不是"有哪些板块"。 */
+.crumb { font-size: var(--f1); color: var(--dim); margin: -.7rem 0 1rem;
+         display: flex; flex-wrap: wrap; gap: 0 var(--s1) }
 .dim { color: var(--dim) }
-.sm { font-size: .87rem }
-.xs { font-size: .8rem }
-table { border-collapse: collapse; width: 100%; font-size: .87rem; margin: .5rem 0 }
-th, td { text-align: left; padding: .4rem .5rem; border-bottom: 1px solid var(--line);
+.sm { font-size: var(--f3) }
+.xs { font-size: var(--f1) }
+table { border-collapse: collapse; width: 100%; font-size: var(--f3); margin: var(--s2) 0 }
+th, td { text-align: left; padding: var(--s2) var(--s2); border-bottom: 1px solid var(--line);
          vertical-align: top }
-th { font-weight: 600; color: var(--dim); font-size: .82rem; white-space: nowrap }
+th { font-weight: 600; color: var(--dim); font-size: var(--f2); white-space: nowrap }
 td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap }
-.banner { border-left: 3px solid var(--ok); background: var(--bg2);
-          padding: .55rem .9rem; margin: .8rem 0 1.4rem; font-size: .9rem }
+/* 首末列贴边：两侧各省下一格 padding，宽表少一次横向滚动。 */
+th:first-child, td:first-child { padding-left: 0 }
+th:last-child, td:last-child { padding-right: 0 }
+/* ⚠️ 行高亮包在 (hover: hover) 里：触屏上 :hover 会**粘住**（点过的那一行一直亮着），
+   在一张"哪一行是我刚看的"很重要的表里，粘住的高亮就是一条错的提示。 */
+@media (hover: hover) { tbody tr:hover { background: var(--bg2) } }
+/* 表格容器 .tw。⚠️ 下面两个媒体查询区间**永不重叠**，这是刻意的：
+   62rem 就是 body 的 max-width。
+     视口比内容宽 -> 只要 sticky 表头，不需要滚动容器；
+     视口比内容窄 -> 只要横向滚动，此时 sticky 本来也没有意义。
+   两条无条件同时写才是坑：祖先元素一旦有 overflow，position: sticky 就改为
+   贴在**那个滚动容器**上而不是视口，表现是"表头就是不粘" ——
+   不报错、只在宽屏上看得出来，而看得出来的人未必知道是这两条互相打的。 */
+.tw { margin: var(--s3) 0 var(--s4) }
+@media (max-width: 61.99rem) {
+  .tw { overflow-x: auto; -webkit-overflow-scrolling: touch } }
+@media (min-width: 62rem) {
+  /* box-shadow: inset 是补 border-collapse: collapse 下 sticky th 下边框消失的
+     已知行为 —— 一根发丝线，不是投影（本站不用阴影做层次）。 */
+  thead th { position: sticky; top: 0; background: var(--bg);
+             box-shadow: inset 0 -1px 0 var(--line2) } }
+@media (min-width: 70rem) {
+  /* 宽屏上表格向两侧各外扩 2.5rem，比正文列宽 5rem。
+     ⚠️ 改版方案原文这里还写了 `padding-inline: 2.5rem` —— 那会把外扩**整条抵消**
+        （内容盒又回到原来的宽度），等于一条不产生任何效果的规则。故删掉。 */
+  .tw { margin-inline: -2.5rem; width: calc(100% + 5rem) } }
+/* 一屏分布 .mix：两栏并列，中间一条实线，**两栏之间没有任何合计**。
+   ⚠️ 这条实线不是装饰，它是版面上对"专病与篮式是两种口径"最直白的表达 ——
+      两栏连列都不共享，于是"把两边加起来"这个动作在视觉上没有落点。
+      一旦有人在这里加一行合计，那个数字会立刻被当成"这个病有多少项试验"，
+      而篮式那一半的样本量是在多个适应症之间分摊的。
+   ⚠️ 一律不用条形、不用颜色：这四个轴里没有任何一档是"好"或"坏"，
+      给它们上色就是在替读者做一次没有依据的排序。 */
+.mix { display: grid; gap: var(--s4) var(--s5); grid-template-columns: 1fr;
+       margin: var(--s4) 0 var(--s5); padding: var(--s4);
+       border: 1px solid var(--line); border-radius: 6px; background: var(--bg2) }
+@media (min-width: 46rem) {
+  .mix { grid-template-columns: 1fr 1fr }
+  .mix > .mixcol + .mixcol { border-left: 1px solid var(--line);
+                             padding-left: var(--s5) } }
+.mixcol > h3 { margin: 0 0 var(--s1); font-size: var(--f5) }
+.ax { margin: var(--s3) 0 0 }
+/* ⚠️ h3 与 h4 共用一条规则，因为轴标题的**层级**取决于它嵌在多深
+      （疾病页里它在 .mixcol 的 h3 之下，所以是 h4；首页里它直接在 h2 之下，
+      所以是 h3），而它的**样式**跟深度无关。
+      两档都写在同一条规则里，比让 ax() 在不同页面渲出不同外观要好 ——
+      后者的表现是同一个东西在两页上一大一小，而读者会以为那是两种东西。 */
+.ax > h3, .ax > h4 { margin: 0; font-size: var(--f1); font-weight: 600; color: var(--dim) }
+.ax > ul { list-style: none; margin: var(--s1) 0 0; padding: 0; font-size: var(--f3);
+           display: grid; gap: 0 var(--s5);
+           grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)) }
+.ax li { display: flex; justify-content: space-between; gap: var(--s3);
+         border-bottom: 1px dotted var(--line) }
+.mv { font-variant-numeric: tabular-nums; font-weight: 600 }
+/* 页内目录 .toc。⚠️ 它存在的理由是实测出来的：SLE 那一页有 137 + 68 行表格，
+   下面还有文献、交易、可核验性三节 —— 不给目录的话"这一页有没有交易线索"
+   这种事只能靠滚半屏去发现，而滚不到底的读者会读成"没有"。
+   ⚠️ 不做 position: sticky：小屏上它会一直占掉一条屏高，而这一页真正要读的是表。
+   ⚠️ 只列**这一页真的有**的小节（见 toc()）：列出来却跳到空处
+      比不列更糟 —— 那等于页面亲口说了一个不存在的小节存在。 */
+.toc { font-size: var(--f3); margin: var(--s4) 0 var(--s5); padding: var(--s3) var(--s4);
+       border: 1px solid var(--line); border-radius: 6px; background: var(--bg2) }
+.toc > b { font-weight: 600; color: var(--dim); font-size: var(--f1) }
+.toc ol { list-style: none; display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4);
+          margin: var(--s1) 0 0; padding: 0 }
+/* 子实体反链 .kids：父页上"多出来的那几项在哪一页"。 */
+.kids { font-size: var(--f3); margin: var(--s2) 0 var(--s4) }
+/* 同类实体去处 .sib。⚠️ 它只在两种位置出现（见 render_disease）：0 命中页的横幅之下、
+   有命中页的页面末尾。理由是那两种页面上"读者卡住"的位置不同。
+   ⚠️ 做成边框盒而不是一行小字：0 命中的页面上它是**唯一**可点的东西，
+      而一行灰色小字在一条琥珀横幅下面会被整段跳过。 */
+.sib { font-size: var(--f3); margin: var(--s5) 0; padding: var(--s3) var(--s4);
+       border: 1px solid var(--line); border-radius: 6px; background: var(--bg2) }
+.sib > b { font-weight: 600; font-size: var(--f2); color: var(--dim) }
+.sib ul { list-style: none; display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4);
+          margin: var(--s1) 0 var(--s2); padding: 0 }
+/* 别名 .alias：Ctrl+F 用的那几个写法。⚠️ 用 --f1 而不是 --f0：它是给人读的，
+   不是角标。⚠️ 也不做成 display:none 的"隐藏关键词"——那是 SEO 作弊的做法，
+   而且读者 Ctrl+F 命中一个看不见的字符串时，浏览器不会把它滚进视野。 */
+.alias { font-size: var(--f1); color: var(--dim) }
+/* 首页定位条。⚠️ 这段注释 2026-08-25 改写过一次，原文是"刻意不是四张 KPI 卡"。
+   那句话当时挡住的是两件真的坏事，现在仍然挡着，只是换了挡法：
+     ① 把"存量概览"里的同一批数字印第二遍 —— 现在的做法是**指标行取代了那一批**，
+        不是与它并存（见 render_index：原来的 div.kv 已经不在了）；
+     ② 放一个永远不会被填的占位格 —— 现在由 stat() 挡：它拒绝渲染没有口径的数字，
+        而"—"必须显式声明成 kind="blind" 才排得出来。
+   ⚠️ 所以这里剩下的规矩只有一条，而且它比原来那句更硬：
+      **同一个数字不许由两处各自算一遍。**
+      注意它管的不是"出现两次"：下面那两行分解式里 333 与 2257 会再出现一遍，
+      而那是等式在复述自己的项，两边取的是同一个 ov 键 —— 漂不开。
+      要防的是两处**各自去算**同一个量（一处用 sum()、另一处写死一个常量，
+      或者两处查了两条不同的 SQL）：那种情况下页面会给出两个不同的总数，
+      而它对此毫无表示。 */
+.lede { font-size: var(--f4); margin: var(--s2) 0 var(--s3) }
+/* ⚠️ 这里原先还有一条 .signpost —— 首页那一行六个路牌。2026-08-25 删掉了，
+      理由不是版面：那六个链接与顶部导航**逐个重复**，唯一多出来的是括号里的
+      两个计数（全部 N 项试验 / N 个实体），而这两个数现在由指标行印出来，
+      还带上了各自的口径。同一批链接印两遍的真实代价是：改一处忘另一处时，
+      页面会给出两份不一致的路牌，而它对此毫无表示。 */
+/* ===== hero：H1 之下、正文之上的一整块（定位条 + 指标行 + 该页的横幅） =====
+   ⚠️ 刻意不给背景色、不给边框：它与正文是同一片纸，只是密度不同。
+      给它一个盒子的后果是读者把它读成"页头装饰"，而 hero 里恰恰放着
+      .banner.stale —— 本站最该被读的那一段。 */
+.hero { margin: var(--s2) 0 var(--s5) }
+.hero > .lede { max-width: 44rem }        /* ≈34 汉字/行；再长一行读者会掉行 */
+/* ===== 指标行 .stats / .stat =====
+   三行结构：值 / 名 / **口径**。第三行不是可选的，见 stat() 里那条 raise。
+   ⚠️ auto-fit + minmax 而不是写死列数：本站宽度从 390px 连续到 1440px
+      （body max-width: 62rem），写死列数就得为每个断点各写一遍，
+      而漏掉一个断点的表现是某个宽度上一格压成两字一行 —— 只在那一档宽度看得见。
+   ⚠️ minmax 下界写 13rem 而不是 1fr：1fr 的最小值是 auto，
+      一格里出现一个长值（比如"未启用·等排班"）会把整条栅格撑破。
+   ⚠️ 一律不用 overflow-x 做横向轨：一是 overflow-x 只许出现在 max-width 查询里
+      （否则连带废掉 sticky 表头，见 .tw 那段），二是滚出屏幕之外的那一格
+      等于没印 —— 而这一行印的是本页最上层的几个数。 */
+.stats { display: grid; gap: var(--s3) var(--s4);
+         grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+         margin: var(--s4) 0 var(--s5); padding: 0; list-style: none }
+.stat { border-left: 2px solid var(--line2); padding-left: var(--s3); min-width: 0 }
+.stat > .v { display: block; font-size: var(--f7); font-weight: 600; line-height: 1.25;
+             font-variant-numeric: tabular-nums; overflow-wrap: anywhere }
+.stat > .k { display: block; font-size: var(--f3) }
+/* 口径那一行取 --f1 而不是 --f0。--f0 是角标档（.tag/.role/.adj 三族在用），
+   而这一行是要**被读**的正文。暗色下 --dim 的对比度已经接近下限，再缩一档
+   就掉出可读区 —— 那样"每个数字旁边都有口径"在暗色模式下会变成
+   形式上成立、事实上读不到。 */
+.stat > .q { display: block; font-size: var(--f1); color: var(--dim); margin-top: var(--s1) }
+/* 三种"空"必须长得不一样，第二通道是**线型**而不是颜色
+   （forced-colors 下颜色全丢，线型还在）：
+     .stat        跑过了，这个区间就是 0    —— 中性实线
+     .stat.nosum  这个数不可与别的数相加    —— 点线
+     .stat.blind  盲区，本站答不出来        —— 琥珀点线 + 值印「—」
+   ⚠️ 这一档是照着参照站那个坑反着做的：那边四格指标全印「—」，
+      于是"没开这一层""这个区间确实是 0""这是盲区"三件事在版面上是同一个字形。 */
+.stat.nosum { border-left-style: dotted }
+.stat.blind { border-left-style: dotted; border-left-color: var(--caution) }
+.stat.blind > .v { color: var(--caution); font-size: var(--f6) }
+/* ===== 口径折叠块 .cal =====
+   短标签在 <summary> 里 —— 也就是**永远可见、永远打印、Ctrl+F 找得到**；
+   只有长句折进正文。
+   ⚠️ 顺序不可以反过来。收起状态的 <details> 内容打印印不出来（见本表末尾那段），
+      把短标签折进去等于让纸面上出现一串没有口径的数字。 */
+.cal { display: inline-block; margin: 0 var(--s3) var(--s1) 0; font-size: var(--f1) }
+.cal > summary { color: var(--dim); border-bottom: 1px dotted var(--line2) }
+/* 否定档（「不可相加」「答不出来」一类）沿用琥珀，与 .adj.no / .banner.caution 同一条规矩。 */
+.cal.no > summary { border-bottom-color: var(--caution); color: var(--caution) }
+.cal > p { margin: var(--s1) 0 0; max-width: 34rem }
+/* 0 命中分隔行。⚠️ 是表格里的一行文字，不是一条视觉分割线：
+   分割线在打印稿与高对比度模式下要么消失、要么变成一条无法解释的横线，
+   而这一行要说的是"以下这些是查过、结果为 0"——那必须是字。 */
+tr.sep td { color: var(--dim); font-size: var(--f1); background: var(--bg2);
+            border-bottom: 1px solid var(--line2) }
+/* 横幅五档。⚠️ 判据是一句话：**页面上的数字还能不能被采信**。
+   .banner          中性  说明、口径、背景交代 —— 不表态
+   .banner.ok       绿    这一层今天跑成了；只在明确成立时写，绝不当默认值
+   .banner.off      中性  跑过了而结果确实是 0 / 空转 —— 观测结果，不是故障
+   .banner.caution  琥珀  本站的**能力边界**：数字是真的，但只在某个范围内成立
+   .banner.stale    红    管线故障：这一页的数字不该被采信
+   ⚠️ 裸 .banner 从"绿"改成"中性"是刻意的（2026-08-24）：
+      原来默认是绿，于是"class 打错一个字母"的后果是把任意一段话静默印成
+      **成功色** —— 一个看不见的、方向最坏的失效。现在打错的后果是退回"不表态"。
+      代价是绿必须处处显式写 .banner.ok，这正是想要的：声明成功要留痕。 */
+.banner { border-left: 3px solid var(--line2); background: var(--bg2);
+          padding: .55rem var(--s4); margin: var(--s4) 0 var(--s5); font-size: var(--f4) }
+.banner.ok { border-left-color: var(--ok) }
+.banner.off { border-left-color: var(--dim) }
+.banner.caution { border-left-color: var(--caution) }
 .banner.stale { border-left-color: var(--warn) }
-.feed { border: 1px solid var(--line); border-radius: 6px; padding: .8rem 1rem;
-        margin: .9rem 0 }
-.feed > h3 { margin-top: 0 }
-.tag { display: inline-block; font-size: .74rem; padding: .05rem .42rem; border-radius: 3px;
+/* 卡片。⚠️ `.feed` 与 `.card` 是同一条规则的两个名字，刻意**不**把 .feed 改名：
+   改名要动 render.py 五处和若干条断言，换来的是零可见变化。
+   两个名字各自还带着来处：.feed 是首页那五条情报流，.card 是别处的方块。 */
+.feed, .card { border: 1px solid var(--line); border-radius: 6px; padding: var(--s4) 1rem;
+        margin: var(--s4) 0;
+        /* ⚠️ min-width: 0 是承重的：grid 子项默认 min-width: auto，
+           卡片里一张宽表会把整列撑破（右侧内容跑到视口外），而这只在小屏上看得见。 */
+        min-width: 0 }
+.feed > h3, .card > h3 { margin-top: 0 }
+/* ===== 卡片栅格 =====
+   ⚠️ .wide 跨满整行，给"里面有一张五六列的表"的那张卡用。没有它，宽表落在半宽卡里
+      会触发 .tw 的 overflow-x，而一个有 overflow 的祖先会让 sticky 表头**静默失效**
+      （同一个坑在 .tw 那段里写过一遍）。 */
+.grid { display: grid; gap: 0 var(--s4); grid-template-columns: 1fr; margin: var(--s4) 0 }
+@media (min-width: 46rem) { .grid.g2 { grid-template-columns: 1fr 1fr } }
+.grid > .wide { grid-column: 1 / -1 }
+/* ===== 疾病卡片网格 .dg（只在 diseases/index.html） ===== */
+.dg { display: grid; gap: var(--s3); padding: 0; list-style: none;
+      margin: var(--s3) 0 var(--s5);
+      grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)) }
+.dg > li { border: 1px solid var(--line); border-radius: 6px; padding: var(--s3) var(--s4);
+           min-width: 0 }
+/* 两个网格共用这一条：数字等宽 + 不许在数字与单位之间折行。
+   ⚠️ .zg 也要 —— 芯片里那个 0 折到下一行去，读者看到的是一个只有病名的芯片。 */
+.dg .num, .zg .num { font-variant-numeric: tabular-nums; white-space: nowrap }
+/* 0 命中实体的芯片 .zg。⚠️ 用点线下边框（沿用 .ax li 的语汇）而不是四边框：
+   28 个四边框会在版面上排出一片"待办卡片"的观感，而这 28 个实体不是待办 ——
+   它们是查过、结果为 0 的观测。
+   ⚠️ 芯片里那个 0 是**印出来的字**，不是留空：只写病名的芯片会被读成
+      "本站没查这个病"，而这一整段存在的理由恰恰相反。
+   ⚠️ 下界从 11rem 放到 15rem，理由是芯片里除了病名还带**英文名**：这一页是
+      Ctrl+F 的主要落点，而 28 个 0 命中实体的英文名（Psoriasis、Sarcoidosis…）
+      只在这里出现一次 —— 省掉它等于让"搜英文名搜不到"这件事只发生在这 28 个病上，
+      而那 28 个恰好是最需要读者确认"本站到底查过没有"的。 */
+.zg { display: grid; gap: var(--s1) var(--s4); padding: 0; list-style: none;
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+      font-size: var(--f3); margin: var(--s2) 0 var(--s5) }
+.zg > li { display: flex; justify-content: space-between; gap: var(--s2);
+           border-bottom: 1px dotted var(--line) }
+/* 小标签拆成三族。⚠️ 拆分的理由不是好看：2026-08-24 实测 .tag 一个令牌被 35 处复用，
+   而那 35 处在讲**七套互不相干的分类法**。后果是页面上两个长得一模一样的灰框，
+   一个说的是"本站这一层没开"，另一个说的是"这项试验是篮式的" ——
+   读者没有任何办法知道它们不是一件事。三族各自回答一个问题：
+
+     .tag   「本站这一层跑不跑」    —— 能力状态，有边框
+     .role  「这条数据本身是什么」  —— 数据属性，左竖线无框
+     .adj   「裁定/核验得出了什么」 —— 结论，中性底无框
+
+   ⚠️ 边框**线型**是刻意的第四通道（实线/虚线/点线）：色盲、灰度打印、
+      forced-colors 三种情况下颜色都不可用，而线型三种情况下都还在。 */
+.tag { display: inline-block; font-size: var(--f0); padding: .05rem .42rem; border-radius: 3px;
        border: 1px solid var(--line); color: var(--dim); white-space: nowrap }
-.tag.live { border-color: var(--ok); color: var(--ok) }
-.tag.off { border-color: var(--p1); color: var(--p1) }
-.tag.acc { border-color: var(--dim) }
-.why { color: var(--dim); font-size: .86rem; margin: .35rem 0 0 }
-.kv { display: flex; flex-wrap: wrap; gap: .35rem 1.4rem; font-size: .88rem; margin: .4rem 0 }
+.tag.live { border-color: var(--ok); color: var(--ok); border-style: solid }
+.tag.off { border-color: var(--p1); color: var(--p1); border-style: dotted }
+.tag.acc { border-color: var(--dim); border-style: dashed }
+/* .role —— 数据本身的属性（篮式试验、期刊 vs 预印本）。
+   ⚠️ 与 .tag 刻意长得不一样：这一族说的事**与本站跑得好不好无关**，
+      它就算全站管线都绿着也照样是这个值。 */
+.role { display: inline-block; font-size: var(--f0); padding: .05rem 0 .05rem .42rem;
+        border-left: 2px solid var(--line2); color: var(--dim) }
+/* 预印本保留琥珀：它不是"本站的问题"，而是**这条数据本身**未经同行评议 ——
+   一个必须看得见、不能只靠读两个字发现的属性。 */
+.role.pre { border-left-color: var(--caution); color: var(--caution) }
+/* .adj —— 裁定或核验的结论。中性底、无边框：结论的权威通道是**文字**，
+   而这一族的文字全是成对反义词（答得上/答不上、未归属/已归属），读得出来。 */
+.adj { display: inline-block; font-size: var(--f0); padding: .05rem .42rem; border-radius: 3px;
+       background: var(--bg2); color: var(--dim) }
+/* 唯一的例外：「本站答不出来」是一条**盲区**，而盲区在本站从不只靠文字说 ——
+   同一条规矩在横幅那边就是 .banner.caution。 */
+.adj.no { border-left: 2px solid var(--caution); border-radius: 0 3px 3px 0;
+          color: var(--caution) }
+/* 试验标题截断到两行。实测 official_title：p50 157 字符 / p90 219 / max 364，
+   333 项里有 263 项超过 120 字符 —— 不截断的话一张表里每行占四到五行高，
+   "这个病有多少项试验在招"这种一眼就该看出来的事要翻半屏。
+   ⚠️ 关键约束：全文**始终在 HTML 里**，只是被裁掉不显示。
+      Chrome 的 Ctrl+F 会把 overflow: hidden 裁掉的文字**算进命中数**，
+      但可能不把它滚进视野、也不高亮 —— 于是读者遇到"搜到了 3 处却只看得见 1 处"。
+      所以下面给了四个逃生口：hover / focus-within（键盘 Tab 进去也展开）/
+      :target（深链跳到这一行）/ 打印（见 @media print）。
+   ⚠️ trials.html 刻意**不用**这个类：那一页是本站唯一的全站检索面，
+      它的横幅里写明了"本页不截断标题"。 */
+.ti { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+      line-clamp: 2; overflow: hidden }
+tr:hover .ti, tr:focus-within .ti, tr:target .ti, .ti:hover, .ti:focus-within {
+      display: block; -webkit-line-clamp: none; line-clamp: none; overflow: visible }
+.why { color: var(--dim); font-size: var(--f3); margin: var(--s1) 0 0 }
+.kv { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s5); font-size: var(--f3);
+      margin: var(--s2) 0 }
 .kv b { font-weight: 600 }
-footer { margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid var(--line);
-         color: var(--dim); font-size: .82rem }
-details { margin: .6rem 0 }
-summary { cursor: pointer; font-size: .88rem; color: var(--dim) }
-code { background: var(--bg2); padding: .05rem .3rem; border-radius: 3px; font-size: .88em }
-.zero { color: var(--dim) }
+footer { margin-top: var(--s7); padding-top: 1rem; border-top: 1px solid var(--line);
+         color: var(--dim); font-size: var(--f2) }
+details { margin: var(--s3) 0 }
+summary { cursor: pointer; font-size: var(--f3); color: var(--dim) }
+code { background: var(--bg2); padding: .05rem .3rem; border-radius: 3px; font-size: .88em;
+       font-family: ui-monospace, "Cascadia Mono", Consolas, "Courier New", monospace }
+.zero { color: var(--dim); font-variant-numeric: tabular-nums }
+/* 高对比度 / 强制配色（Windows 高对比主题、forced-colors: active）。
+   ⚠️ 这一档下**自定义颜色全部失效**，系统只给一组前景/背景/边框色。
+      也就是说"绿边=正常、红边=故障"这条信息在这里会整档消失。
+      所以横幅的边框在这里改成 currentColor（至少还看得出有一条边），
+      而真正的兜底不在 CSS 里：每一条横幅的**文字本身**都说清了它是哪一档 ——
+      这就是本站坚持"颜色之外必须有第二通道"的原因，不是为了好看。
+   ⚠️ 刻意不用 forced-color-adjust: none 把颜色抢回来：那是覆盖用户的无障碍设置。 */
+@media (forced-colors: active) {
+  .banner, .banner.ok, .banner.off, .banner.caution, .banner.stale {
+    border-left-color: currentColor }
+  .tag, .tag.live, .tag.off, .tag.acc { border-color: currentColor; color: inherit }
+  /* ⚠️ 线型**不**在这里重置：forced-colors 丢的是颜色，不是 border-style ——
+     实线/虚线/点线是这一档下三族之间唯一还活着的视觉区分。 */
+  .role, .role.pre, .adj, .adj.no { border-color: currentColor; color: inherit }
+  /* .stat 的左竖线与卡片的边框是这两个模块在这一档下**唯一**的边界线索：
+     底色（--bg2）在这里被系统色顶掉，不给边框的话卡片会与正文融成一片。
+     ⚠️ 线型同样不重置 —— 实线/点线是"可相加 / 不可相加 / 盲区"三档在这一档下
+        仅剩的视觉区分，颜色已经没了。 */
+  .stat, .stat.nosum, .stat.blind { border-left-color: currentColor }
+  .stat.blind > .v { color: inherit }
+  .card, .feed, .dg > li { border-color: currentColor }
+  .cal > summary, .cal.no > summary { border-bottom-color: currentColor; color: inherit }
+  :focus-visible { outline-color: currentColor } }
+/* 打印。⚠️ 页脚与横幅**不隐藏**：一张打出来的纸最容易脱离上下文被传阅，
+   而水印、数据截止时间、口径链接正是让它不被误读的那部分。
+   隐藏它们是"打印样式"里最常见也最危险的一刀。 */
+@media print {
+  body { max-width: none; padding: 0; background: #fff; color: #000 }
+  nav { display: none }            /* 导航在纸上没有用途，且它不承载任何口径 */
+  a { text-decoration: none }
+  tr, .feed, .card, .banner, .stat, .dg > li { break-inside: avoid }
+  /* ⚠️ 纸面上没有"视口宽度"这回事：三个 auto-fit 网格在打印时拿不到一个
+     有意义的可用宽度，实测之外的保守做法是按纸宽显式定列数 ——
+     否则 A4 上它们会退成一列，一页只印得下三张卡。
+     （这几个列数是照 A4 正文宽推的，没有在本机的打印预览里逐格量过。） */
+  .stats, .grid.g2, .dg { grid-template-columns: 1fr 1fr }
+  .zg { grid-template-columns: 1fr 1fr 1fr }
+  /* ⚠️ 纸上没有"滚动"这回事：.tw 的 overflow 与外扩必须全部撤掉，
+     否则超出纸宽的那几列**直接消失**，而表格看起来是完整的。 */
+  .tw { overflow: visible; margin-inline: 0; width: auto }
+  thead th { position: static }
+  thead { display: table-header-group }   /* 跨页时每一页重印表头 */
+  /* 截断的标题在纸上展开：纸面没有 hover，看不见的那半句就永远看不见了。 */
+  .ti { -webkit-line-clamp: none; max-height: none; overflow: visible } }
+/* ⚠️ 打印时**收起状态的 <details> 里的内容印不出来**，这里刻意不假装能修：
+   各浏览器隐藏它的机制不同（Chrome 走内部 slot 的 content-visibility，
+   要 ::details-content 才覆盖得掉，而那是很新的特性），我没有在这几个浏览器上
+   实测过，写一条不确定生效的规则等于把"依据已经印出来了"这件事变成一句没验证的话。
+   现状是：折进 <details> 的都是**依据**（condition 原文、查询串一类），
+   打印稿上会缺这一层。要它上纸，先在页面上把它展开再打印。 */

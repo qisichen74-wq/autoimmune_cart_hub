@@ -19,14 +19,14 @@
 <h2 id="recall">召回：为什么是「模态优先全量扫」而不是「按病名检索」</h2>
 <p class="sm">本站不按疾病名去注册库检索，而是先用
 <code>query.intr = CAR OR "chimeric antigen receptor"</code> 把干预性研究全量取回
-（实测 2911 条），再在本地做疾病分类。</p>
+（实测 2917 条），再在本地做疾病分类。</p>
 <p class="sm">理由是可证明性：按病名检索的漏检必然存在且不可见 ——
 实测候选池里有一批试验的 condition 只写「Autoimmune Diseases」这一个笼统标签，
 没有任何具体病名可匹配；而走 MeSH 树的 <code>cond="Autoimmune Diseases"</code>
 根本不包含克罗恩病与溃疡性结肠炎（它们挂在 Inflammatory Bowel Diseases 下）。
 全量扫的代价只有约 2.7 MB，换来的是「没漏」这件事由构造保证，而不是靠病名列全。</p>
 
-<h3>候选池里的 2911 条不能叫「2911 项 CAR 试验」</h3>
+<h3>候选池里的 2917 条不能叫「2917 项 CAR 试验」</h3>
 <p class="sm">检索式命中的是字面 <code>CAR</code>，其中包含真实噪声：
 干预描述里出现 <code>CARS</code>（儿童孤独症评定量表）、<code>E-CAR</code> 量表，
 以及字面意义的「汽车」（安全座椅安装、酒驾、机动车事故）。
@@ -37,7 +37,7 @@
 <h3>反过来，纳入不等于「已确认是 CAR 试验」</h3>
 <p class="sm">模态证据字段记录的是「这条试验为什么进网」，不是「它是不是 CAR 疗法」。
 其中 <code>仅标题含 CAR</code> 与 <code>已取字段未见 CAR</code> 两类需要人工复核。</p>
-<div class="ax"><h3>模态证据分布</h3><ul><li><span>干预字段含 CAR / chimeric antigen receptor</span><span class="mv">266</span></li><li><span>仅标题含 CAR，干预字段未见</span><span class="mv">38</span></li><li><span>已取字段中未见 CAR 字样（由检索端命中，未复核）</span><span class="mv">30</span></li></ul></div>
+<div class="ax"><h3>模态证据分布</h3><ul><li><span>干预字段含 CAR / chimeric antigen receptor</span><span class="mv">268</span></li><li><span>仅标题含 CAR，干预字段未见</span><span class="mv">38</span></li><li><span>已取字段中未见 CAR 字样（由检索端命中，未复核）</span><span class="mv">32</span></li></ul></div>
 
 <h2 id="classify">分类：确定性规则，不用模型</h2>
 <p class="sm">condition 字符串到疾病实体的映射全部是可复现规则（token 集合相等 /
@@ -46,8 +46,8 @@
 不用大模型分类的原因很直接：分类结果就是「某病有 N 项试验」这个数字，
 规则错了可以 diff、可以写测试守住；模型错了只会安静地把 MOGAD 数成 NMOSD，
 而且下次跑还可能不一样。</p>
-<p class="sm">已登记 condition 字符串 <b>2407</b> 条，标签分布：</p>
-<div class="ax"><h3>标签分布</h3><ul><li><span>oncology</span><span class="mv">1582</span></li><li><span>unmatched_no_immune_signal</span><span class="mv">407</span></li><li><span>disease_match</span><span class="mv">208</span></li><li><span>other_disease</span><span class="mv">53</span></li><li><span>product_or_procedure</span><span class="mv">45</span></li><li><span>not_a_disease</span><span class="mv">38</span></li><li><span>target_or_biomarker</span><span class="mv">26</span></li><li><span>umbrella</span><span class="mv">19</span></li><li><span>out_of_scope_decided</span><span class="mv">17</span></li><li><span>car_t_toxicity</span><span class="mv">12</span></li></ul></div>
+<p class="sm">已登记 condition 字符串 <b>2410</b> 条，标签分布：</p>
+<div class="ax"><h3>标签分布</h3><ul><li><span>oncology</span><span class="mv">1584</span></li><li><span>unmatched_no_immune_signal</span><span class="mv">407</span></li><li><span>disease_match</span><span class="mv">209</span></li><li><span>other_disease</span><span class="mv">53</span></li><li><span>product_or_procedure</span><span class="mv">45</span></li><li><span>not_a_disease</span><span class="mv">38</span></li><li><span>target_or_biomarker</span><span class="mv">26</span></li><li><span>umbrella</span><span class="mv">19</span></li><li><span>out_of_scope_decided</span><span class="mv">17</span></li><li><span>car_t_toxicity</span><span class="mv">12</span></li></ul></div>
 <p class="sm">疾病名人工队列：待裁定 <b>0</b> 条，
 历史已裁定 1149 条。队列的判据是<b>正信号</b>
 （字符串带免疫词根但未匹配到任何已登记实体），不是「解释不了的字符串」——
@@ -63,7 +63,7 @@
 炎症性肠病伞形标签、化脓性汗腺炎、免疫介导肾病 —— <b>均计入自免</b>。</li>
 <li>AL 型淀粉样变 —— <b>不纳入</b>（浆细胞病，与免疫介导机制不相关）。</li>
 <li>移植后淋巴增殖性疾病（PTLD）—— 归入<b>肿瘤参照</b>（移植后淋巴增殖性肿瘤）。</li>
-<li>肿瘤专属试验 2260 项入库为参照，只存试验骨架。
+<li>肿瘤专属试验 2262 项入库为参照，只存试验骨架。
 留着它们是为了能回答三个问题：同一产品在肿瘤与自免的并行开发路线、
 同一靶点在肿瘤的剂量与清淋先例、CRS/ICANS 的安全性先例
 （这些数据几乎全在肿瘤试验里，而自免适应症可接受的毒性阈值不同）。</li>
@@ -81,7 +81,7 @@
 <b>「支撑这一行的那次抓取还新不新」</b>。两个问题的失效方式正好相反：
 引文回放的结论<b>不随时间漂移</b>（raw 被 sha 钉死），
 而核验状态<b>只随时间漂移</b>。所以它们分成两段，各有各的数字。</p>
-<p><span class="tag live">已启用</span> 已登记 <b>334</b> 个实体，其中试验 <b>334</b>/334 项。</p><p class="why"><b>下面这个日期是抓取时刻，不是检查时刻。</b>支撑这些行的抓取最新为 <b>2026-08-31T01:15:33Z</b>，最早为 2026-08-22T06:58:32Z。这个区别是这张表有没有用的分界线：存「检查跑的时刻」的话，每天跑一次检查就会让所有行永远显示「已核验」 —— 哪怕底下那份数据是一年前抓的。核验层不向注册库发任何请求，它没有资格刷新这个日期。</p><div class="tw"><table><thead><tr><th>实体类别</th><th class="n">行数</th><th>状态分布</th><th>复核期</th></tr></thead><tbody><tr><td>临床试验<span class="xs dim"> trial</span></td><td class="n">334</td><td class="sm">曾可核·已过期 330、出处可核 4</td><td class="sm dim">7 天</td></tr></tbody></table></div><p class="why">核验<b>覆盖不到</b>本站自己推导的列：<code>classification</code>、<code>classification_reason</code>、<code>modality_evidence</code>。它们是本站的分类结果，注册库从没说过这句话 —— 而 <code>classification</code> 恰恰是本站最容易出错、最该被质疑的一列。</p><p class="why">状态 <code>conflicted</code> 这一层<b>写不出来</b>：含义是「两个独立来源对同一字段给出不同取值」。今天每项试验只有 ctgov 一个来源，交易只有 SEC 一个来源，所以这条路径<b>永远不会</b>写出 conflicted。它是 0 的原因是没有第二个来源可比，不是比过了没有分歧。</p><p class="sm dim">覆盖范围：只登记 classification=&#x27;in_scope&#x27; 的试验，加上四张带引文的表。肿瘤参照库的试验<b>不在范围内</b>：它们按设计只存试验骨架、不留快照，登记进来会一律显示成 unverified，而那读起来像「出处断了」，实际是「本站没打算给它留出处」。</p>
+<p><span class="tag live">已启用</span> 已登记 <b>338</b> 个实体，其中试验 <b>338</b>/338 项。</p><p class="why"><b>下面这个日期是抓取时刻，不是检查时刻。</b>支撑这些行的抓取最新为 <b>2026-09-07T01:21:01Z</b>，最早为 2026-08-22T06:58:32Z。这个区别是这张表有没有用的分界线：存「检查跑的时刻」的话，每天跑一次检查就会让所有行永远显示「已核验」 —— 哪怕底下那份数据是一年前抓的。核验层不向注册库发任何请求，它没有资格刷新这个日期。</p><div class="tw"><table><thead><tr><th>实体类别</th><th class="n">行数</th><th>状态分布</th><th>复核期</th></tr></thead><tbody><tr><td>临床试验<span class="xs dim"> trial</span></td><td class="n">338</td><td class="sm">曾可核·已过期 322、出处可核 16</td><td class="sm dim">7 天</td></tr></tbody></table></div><p class="why">核验<b>覆盖不到</b>本站自己推导的列：<code>classification</code>、<code>classification_reason</code>、<code>modality_evidence</code>。它们是本站的分类结果，注册库从没说过这句话 —— 而 <code>classification</code> 恰恰是本站最容易出错、最该被质疑的一列。</p><p class="why">状态 <code>conflicted</code> 这一层<b>写不出来</b>：含义是「两个独立来源对同一字段给出不同取值」。今天每项试验只有 ctgov 一个来源，交易只有 SEC 一个来源，所以这条路径<b>永远不会</b>写出 conflicted。它是 0 的原因是没有第二个来源可比，不是比过了没有分歧。</p><p class="sm dim">覆盖范围：只登记 classification=&#x27;in_scope&#x27; 的试验，加上四张带引文的表。肿瘤参照库的试验<b>不在范围内</b>：它们按设计只存试验骨架、不留快照，登记进来会一律显示成 unverified，而那读起来像「出处断了」，实际是「本站没打算给它留出处」。</p>
 
 <h2 id="blind">已知盲区（是盲区，不是待办）</h2>
 <ul class="sm">
@@ -168,14 +168,14 @@ ACR 这一条只存标题、摘要号、引文与链接，<b>不存摘要正文<
 不回答「这个数字该怎么读」—— 后者一律留在数字旁边，一句也没有搬走。
 ⚠️ 数据一旦过期，下面这几个数会<b>同时回到首页横幅上</b>：
 要判断「为什么它停在那个时刻」时，线索必须在眼前，不能在另一页。</p>
-<p class="sm">最近一次<b>刷新过试验数据</b>的成功运行：第 64 次 · 作业 <code>daily</code> · 候选 2911 → 纳入 334。累计刷新过试验数据的成功运行 <b>9</b> 次，过期阈值 48 小时。</p>
-<p class="sm">另有 <b>4</b> 次运行永久停在 <code>status=running</code>，
+<p class="sm">最近一次<b>刷新过试验数据</b>的成功运行：第 85 次 · 作业 <code>daily</code> · 候选 2917 → 纳入 338。累计刷新过试验数据的成功运行 <b>13</b> 次，过期阈值 48 小时。</p>
+<p class="sm">另有 <b>7</b> 次运行永久停在 <code>status=running</code>，
 未计入任何一侧。它们既没收尾也没标失败（进程被杀、机器休眠都会这样），
 所以本站不能把它们算成成功，也不能算成失败 —— 只能单独报数。</p>
-<p class="sm">另有 <b>30</b> 次成功运行只涉及其他数据层（交易发现），
+<p class="sm">另有 <b>37</b> 次成功运行只涉及其他数据层（交易发现），
 <b>它们不刷新试验数据</b>，因此不计入「试验数据截至」那个时刻。
 交易层自己的覆盖账见<a href="deals.html">交易情报</a>。</p>
-<p class="sm">上次试验数据刷新之后，另有 <b>2</b> 次
+<p class="sm">上次试验数据刷新之后，另有 <b>0</b> 次
 只涉及其他数据层的运行失败 —— 不影响试验数字，
 但交易板块的覆盖面可能因此不完整。</p>
 <p class="sm dim">定时任务用的是 <code>/IT</code>（交互式）：
@@ -193,7 +193,7 @@ ACR 这一条只存标题、摘要号、引文与链接，<b>不存摘要正文<
 
 <footer>
 本页内容由自动管线从公开来源汇编生成，每条结论均可回放至原始字节。<br>汇编、排序与关注点标注是本站的编辑判断，不代表任何机构立场。<br>不含未公开披露信息；不构成投资建议或诊疗建议。
-<p class="xs">试验数据截至 2026-08-31T01:20:54Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
+<p class="xs">试验数据截至 2026-09-07T01:22:53Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
 数字口径见<a href="method.html">口径与盲区</a>。</p>
 </footer>
 </body>

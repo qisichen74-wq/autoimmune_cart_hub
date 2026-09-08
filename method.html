@@ -81,7 +81,7 @@
 <b>「支撑这一行的那次抓取还新不新」</b>。两个问题的失效方式正好相反：
 引文回放的结论<b>不随时间漂移</b>（raw 被 sha 钉死），
 而核验状态<b>只随时间漂移</b>。所以它们分成两段，各有各的数字。</p>
-<p><span class="tag live">已启用</span> 已登记 <b>338</b> 个实体，其中试验 <b>338</b>/338 项。</p><p class="why"><b>下面这个日期是抓取时刻，不是检查时刻。</b>支撑这些行的抓取最新为 <b>2026-09-07T01:21:01Z</b>，最早为 2026-08-22T06:58:32Z。这个区别是这张表有没有用的分界线：存「检查跑的时刻」的话，每天跑一次检查就会让所有行永远显示「已核验」 —— 哪怕底下那份数据是一年前抓的。核验层不向注册库发任何请求，它没有资格刷新这个日期。</p><div class="tw"><table><thead><tr><th>实体类别</th><th class="n">行数</th><th>状态分布</th><th>复核期</th></tr></thead><tbody><tr><td>临床试验<span class="xs dim"> trial</span></td><td class="n">338</td><td class="sm">曾可核·已过期 322、出处可核 16</td><td class="sm dim">7 天</td></tr></tbody></table></div><p class="why">核验<b>覆盖不到</b>本站自己推导的列：<code>classification</code>、<code>classification_reason</code>、<code>modality_evidence</code>。它们是本站的分类结果，注册库从没说过这句话 —— 而 <code>classification</code> 恰恰是本站最容易出错、最该被质疑的一列。</p><p class="why">状态 <code>conflicted</code> 这一层<b>写不出来</b>：含义是「两个独立来源对同一字段给出不同取值」。今天每项试验只有 ctgov 一个来源，交易只有 SEC 一个来源，所以这条路径<b>永远不会</b>写出 conflicted。它是 0 的原因是没有第二个来源可比，不是比过了没有分歧。</p><p class="sm dim">覆盖范围：只登记 classification=&#x27;in_scope&#x27; 的试验，加上四张带引文的表。肿瘤参照库的试验<b>不在范围内</b>：它们按设计只存试验骨架、不留快照，登记进来会一律显示成 unverified，而那读起来像「出处断了」，实际是「本站没打算给它留出处」。</p>
+<p><span class="tag live">已启用</span> 已登记 <b>338</b> 个实体，其中试验 <b>338</b>/338 项。</p><p class="why"><b>下面这个日期是抓取时刻，不是检查时刻。</b>支撑这些行的抓取最新为 <b>2026-09-07T01:21:01Z</b>，最早为 2026-08-22T06:58:32Z。这个区别是这张表有没有用的分界线：存「检查跑的时刻」的话，每天跑一次检查就会让所有行永远显示「已核验」 —— 哪怕底下那份数据是一年前抓的。核验层不向注册库发任何请求，它没有资格刷新这个日期。</p><div class="tw"><table><thead><tr><th>实体类别</th><th class="n">行数</th><th>状态分布</th><th>复核期</th></tr></thead><tbody><tr><td>临床试验<span class="xs dim"> trial</span></td><td class="n">338</td><td class="sm">曾可核·已过期 327、出处可核 11</td><td class="sm dim">7 天</td></tr></tbody></table></div><p class="why">核验<b>覆盖不到</b>本站自己推导的列：<code>classification</code>、<code>classification_reason</code>、<code>modality_evidence</code>。它们是本站的分类结果，注册库从没说过这句话 —— 而 <code>classification</code> 恰恰是本站最容易出错、最该被质疑的一列。</p><p class="why">状态 <code>conflicted</code> 这一层<b>写不出来</b>：含义是「两个独立来源对同一字段给出不同取值」。今天每项试验只有 ctgov 一个来源，交易只有 SEC 一个来源，所以这条路径<b>永远不会</b>写出 conflicted。它是 0 的原因是没有第二个来源可比，不是比过了没有分歧。</p><p class="sm dim">覆盖范围：只登记 classification=&#x27;in_scope&#x27; 的试验，加上四张带引文的表。肿瘤参照库的试验<b>不在范围内</b>：它们按设计只存试验骨架、不留快照，登记进来会一律显示成 unverified，而那读起来像「出处断了」，实际是「本站没打算给它留出处」。</p>
 
 <h2 id="blind">已知盲区（是盲区，不是待办）</h2>
 <ul class="sm">
@@ -168,11 +168,11 @@ ACR 这一条只存标题、摘要号、引文与链接，<b>不存摘要正文<
 不回答「这个数字该怎么读」—— 后者一律留在数字旁边，一句也没有搬走。
 ⚠️ 数据一旦过期，下面这几个数会<b>同时回到首页横幅上</b>：
 要判断「为什么它停在那个时刻」时，线索必须在眼前，不能在另一页。</p>
-<p class="sm">最近一次<b>刷新过试验数据</b>的成功运行：第 85 次 · 作业 <code>daily</code> · 候选 2917 → 纳入 338。累计刷新过试验数据的成功运行 <b>13</b> 次，过期阈值 48 小时。</p>
+<p class="sm">最近一次<b>刷新过试验数据</b>的成功运行：第 90 次 · 作业 <code>daily</code> · 候选 2917 → 纳入 338。累计刷新过试验数据的成功运行 <b>14</b> 次，过期阈值 48 小时。</p>
 <p class="sm">另有 <b>7</b> 次运行永久停在 <code>status=running</code>，
 未计入任何一侧。它们既没收尾也没标失败（进程被杀、机器休眠都会这样），
 所以本站不能把它们算成成功，也不能算成失败 —— 只能单独报数。</p>
-<p class="sm">另有 <b>37</b> 次成功运行只涉及其他数据层（交易发现），
+<p class="sm">另有 <b>40</b> 次成功运行只涉及其他数据层（交易发现），
 <b>它们不刷新试验数据</b>，因此不计入「试验数据截至」那个时刻。
 交易层自己的覆盖账见<a href="deals.html">交易情报</a>。</p>
 <p class="sm">上次试验数据刷新之后，另有 <b>0</b> 次
@@ -193,7 +193,7 @@ ACR 这一条只存标题、摘要号、引文与链接，<b>不存摘要正文<
 
 <footer>
 本页内容由自动管线从公开来源汇编生成，每条结论均可回放至原始字节。<br>汇编、排序与关注点标注是本站的编辑判断，不代表任何机构立场。<br>不含未公开披露信息；不构成投资建议或诊疗建议。
-<p class="xs">试验数据截至 2026-09-07T01:22:53Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
+<p class="xs">试验数据截至 2026-09-08T01:17:28Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
 数字口径见<a href="method.html">口径与盲区</a>。</p>
 </footer>
 </body>

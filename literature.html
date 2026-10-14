@@ -109,7 +109,7 @@
 
 <h2 id="face">检索面：本站到底查了什么</h2><p class="sm">检索式是<b>模态短语 × 病名短语</b>，两侧都限定在标题与摘要里（<code>TITLE_ABS</code>），不做全文匹配 —— 全文匹配会把「参考文献里提到过这个病名」也算成命中，而本层产出的是按病归属，判据必须窄。</p><p class="sm">模态短语：<code>chimeric antigen receptor</code>、<code>CAR-T</code>、<code>CAR T-cell</code>、<code>chimeric autoantibody receptor</code><br>伞形短语：<code>autoimmune</code>、<code>autoimmune disease</code>、<code>autoimmunity</code></p><p class="why">本层<b>每次运行都整遍重跑全部查询</b>，没有时间窗、没有回填、也没有索引滞后补偿 —— 因为不需要：全量一遍实测约 14 分钟（540 条查询，实测于 2026-08-24）。所以「这篇文献做过归属了吗」在这一层不是一个问题，不存在交易层那种「窗口外的候选长期未归属」的滞后。</p><p class="sm dim">实测一遍 540 条查询、约 14 分钟，<code>resultType=lite</code>。</p><h3>期刊写法的补充短语（手写，逐条带实测净增篇数）</h3><p class="sm dim">疾病短语取自<b>分类</b>词表（与交易层同一份来源，不在这里重抄一份）。但分类词表的写法是给注册库的 condition 字段设计的，搬到期刊摘要上有一类会静默返回 0 —— 实测 <code>"Diabetes Mellitus Type 1"</code> 0 篇而 <code>"type 1 diabetes"</code> 43 篇。下面这几条是为此手写的补充，走 git diff，不自动生成。</p><ul class="sm"><li><code>anti_mag</code>：<code>anti-MAG</code></li><li><code>crohn</code>：<code>Crohn&#x27;s disease</code></li><li><code>graves</code>：<code>Graves&#x27; disease</code></li><li><code>sjogren</code>：<code>Sjogren&#x27;s syndrome</code></li><li><code>still</code>：<code>Still&#x27;s disease</code></li></ul>
 
-<h2 id="coverage">最近一次运行的覆盖账</h2><p class="sm">第 164 次运行（2026-10-13T01:40:11Z）共 5 条查询，其中 <b class="zero">0</b> 条没跑完，另有 1 条是本站<b>主动截断</b>的。</p><p class="why">纯模态那几条查询在覆盖账里标着 complete=0，那是<b>主动截断</b>：本站只要它们的总数，不取那 19840 篇文档。这与「这条查询没跑成」是两件事，所以上面「不完整」的清单里不含它们。</p><p class="why">除主动截断的那几条之外，每一条查询都跑完了。</p>
+<h2 id="coverage">最近一次运行的覆盖账</h2><p class="sm">第 168 次运行（2026-10-14T00:44:46Z）共 5 条查询，其中 <b class="zero">0</b> 条没跑完，另有 1 条是本站<b>主动截断</b>的。</p><p class="why">纯模态那几条查询在覆盖账里标着 complete=0，那是<b>主动截断</b>：本站只要它们的总数，不取那 19840 篇文档。这与「这条查询没跑成」是两件事，所以上面「不完整」的清单里不含它们。</p><p class="why">除主动截断的那几条之外，每一条查询都跑完了。</p>
 
 <h2 id="recent">最近的文献</h2>
 <p class="sm dim">按首次发表日期倒序。日期未知的排在最后，且它们<b>不在</b>首页那个
@@ -135,7 +135,7 @@
 
 <footer>
 本页内容由自动管线从公开来源汇编生成，每条结论均可回放至原始字节。<br>汇编、排序与关注点标注是本站的编辑判断，不代表任何机构立场。<br>不含未公开披露信息；不构成投资建议或诊疗建议。
-<p class="xs">试验数据截至 2026-10-13T01:22:38Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
+<p class="xs">试验数据截至 2026-10-14T00:29:03Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
 数字口径见<a href="method.html">口径与盲区</a>。</p>
 </footer>
 </body>

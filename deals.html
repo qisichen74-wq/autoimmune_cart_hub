@@ -8,9 +8,10 @@
 <meta name="robots" content="noindex">
 <title>交易情报｜自身免疫 CAR 细胞治疗情报站</title>
 <link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js" defer></script>
 </head>
 <body>
-<nav aria-label="板块"><a href="index.html">最新动态</a><a href="diseases/index.html">疾病档案</a><a href="trials.html">全部试验</a><span class="nav-sep" aria-hidden="true">·</span><a href="literature.html">文献与预印本</a><a href="deals.html" aria-current="page">交易情报</a><a href="sponsors.html">申办方</a><a href="oncology.html">肿瘤参照库</a><span class="nav-sep" aria-hidden="true">·</span><a href="method.html">口径与盲区</a></nav>
+<nav aria-label="板块"><a class="brand" href="index.html">自身免疫 CAR 细胞治疗情报</a><span class="nav-links"><a href="index.html">最新动态</a><a href="events.html">注册试验动态</a><a href="diseases/index.html">疾病档案</a><a href="trials.html">全部试验</a><span class="nav-sep" aria-hidden="true">·</span><a href="literature.html">文献与预印本</a><a href="deals.html" aria-current="page">交易情报</a><a href="sponsors.html">申办方</a><a href="oncology.html">肿瘤参照库</a><span class="nav-sep" aria-hidden="true">·</span><a href="method.html">口径与盲区</a></span></nav>
 
 <h1>交易情报</h1>
 <p class="dim sm" style="margin-top:.1rem">公开披露的交易与并购 · 发现层（候选）与裁定层（交易）分开呈现</p>
@@ -21,7 +22,7 @@
 抽错一个首付金额，读者没有任何办法发现它错了。所以金额只出现在
 「已裁定的交易」那张表里，而那张表的每一行都必须带原文引用与逐字节可回放的定位符。
 </div>
-<ul class="stats"><li class="stat"><span class="v">4055</span><span class="k">候选文档</span><span class="q"><details class="cal no"><summary>单位是文档 · 不是交易<span class="dim"> · 为什么</span></summary><p class="xs dim">这个数数的是<b>候选文档份数</b>：一份申报可能提到多笔交易，一笔交易也可能被多份申报各提一次。所以它既不是交易数，也不是「有多少家公司在做交易」——它唯一能回答的问题是「有多少份文档进了待读队列」。</p></details></span></li><li class="stat"><span class="v">0</span><span class="k">已裁定的交易</span><span class="q"><details class="cal no"><summary>读过原文才落一行<span class="dim"> · 为什么</span></summary><p class="xs dim">只有已经有人读过原文、并且原文引用能逐字节回放的交易才进这个数（回放不通过的行插不进库，有 CHECK 挡着）。所以它是一个<b>下界</b>，而且它不随候选池一起长 —— 候选池涨一千份，这个数照旧不动。</p></details></span></li><li class="stat"><span class="v">0</span><span class="k">还没做过归属</span><span class="q"><details class="cal no"><summary>还没查 ≠ 查过没有<span class="dim"> · 为什么</span></summary><p class="xs dim">「从未做过归属」是这份文档还没有被查过病名；「查过、一个已登记病名都没出现」是查过、结果确实是没有。两个数在页面上长得一样、含义相反，所以本站既不把它们相加，也不合并成一个「无归属 N 份」。</p></details></span></li><li class="stat"><span class="v">3</span><span class="k">采集渠道</span><span class="q"><details class="cal no"><summary>渠道数 ≠ 覆盖面<span class="dim"> · 为什么</span></summary><p class="xs dim">这个数数的是本站<b>声明过</b>的渠道条数。声明过不等于有数据 —— 里面既有正在跑的，也有机制建成、但还没有任何抓取对象的，还有一次都没跑过、甚至还没建成的。哪一条是哪一种，只看每条渠道标题旁边那个状态标签：本站不把「渠道已声明」渲染成「这个渠道有数据」。</p></details></span></li></ul>
+<ul class="stats"><li class="stat"><span class="v"><span class="mono">4055</span></span><span class="k">候选文档</span><span class="q"><details class="cal no"><summary>单位是文档 · 不是交易<span class="dim"> · 为什么</span></summary><p class="xs dim">这个数数的是<b>候选文档份数</b>：一份申报可能提到多笔交易，一笔交易也可能被多份申报各提一次。所以它既不是交易数，也不是「有多少家公司在做交易」——它唯一能回答的问题是「有多少份文档进了待读队列」。</p></details></span></li><li class="stat"><span class="v"><span class="mono">0</span></span><span class="k">已裁定的交易</span><span class="q"><details class="cal no"><summary>读过原文才落一行<span class="dim"> · 为什么</span></summary><p class="xs dim">只有已经有人读过原文、并且原文引用能逐字节回放的交易才进这个数（回放不通过的行插不进库，有 CHECK 挡着）。所以它是一个<b>下界</b>，而且它不随候选池一起长 —— 候选池涨一千份，这个数照旧不动。</p></details></span></li><li class="stat"><span class="v"><span class="mono">0</span></span><span class="k">还没做过归属</span><span class="q"><details class="cal no"><summary>还没查 ≠ 查过没有<span class="dim"> · 为什么</span></summary><p class="xs dim">「从未做过归属」是这份文档还没有被查过病名；「查过、一个已登记病名都没出现」是查过、结果确实是没有。两个数在页面上长得一样、含义相反，所以本站既不把它们相加，也不合并成一个「无归属 N 份」。</p></details></span></li><li class="stat"><span class="v"><span class="mono">3</span></span><span class="k">采集渠道</span><span class="q"><details class="cal no"><summary>渠道数 ≠ 覆盖面<span class="dim"> · 为什么</span></summary><p class="xs dim">这个数数的是本站<b>声明过</b>的渠道条数。声明过不等于有数据 —— 里面既有正在跑的，也有机制建成、但还没有任何抓取对象的，还有一次都没跑过、甚至还没建成的。哪一条是哪一种，只看每条渠道标题旁边那个状态标签：本站不把「渠道已声明」渲染成「这个渠道有数据」。</p></details></span></li></ul>
 </section>
 
 
@@ -123,7 +124,7 @@
 
 <footer>
 本页内容由自动管线从公开来源汇编生成，每条结论均可回放至原始字节。<br>汇编、排序与关注点标注是本站的编辑判断，不代表任何机构立场。<br>不含未公开披露信息；不构成投资建议或诊疗建议。
-<p class="xs">试验数据截至 2026-10-27T01:20:52Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
+<p class="xs">试验数据截至 2026-10-28T01:14:12Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
 数字口径见<a href="method.html">口径与盲区</a>。</p>
 </footer>
 </body>

@@ -8,9 +8,10 @@
 <meta name="robots" content="noindex">
 <title>疾病档案｜自身免疫 CAR 细胞治疗情报站</title>
 <link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/site.js" defer></script>
 </head>
 <body>
-<nav aria-label="板块"><a href="../index.html">最新动态</a><a href="../diseases/index.html" aria-current="page">疾病档案</a><a href="../trials.html">全部试验</a><span class="nav-sep" aria-hidden="true">·</span><a href="../literature.html">文献与预印本</a><a href="../deals.html">交易情报</a><a href="../sponsors.html">申办方</a><a href="../oncology.html">肿瘤参照库</a><span class="nav-sep" aria-hidden="true">·</span><a href="../method.html">口径与盲区</a></nav>
+<nav aria-label="板块"><a class="brand" href="../index.html">自身免疫 CAR 细胞治疗情报</a><span class="nav-links"><a href="../index.html">最新动态</a><a href="../events.html">注册试验动态</a><a href="../diseases/index.html" aria-current="page">疾病档案</a><a href="../trials.html">全部试验</a><span class="nav-sep" aria-hidden="true">·</span><a href="../literature.html">文献与预印本</a><a href="../deals.html">交易情报</a><a href="../sponsors.html">申办方</a><a href="../oncology.html">肿瘤参照库</a><span class="nav-sep" aria-hidden="true">·</span><a href="../method.html">口径与盲区</a></span></nav>
 
 <h1>疾病档案</h1>
 <p class="dim sm" style="margin-top:.1rem">分疾病归类 · 共 68 个实体</p>
@@ -20,7 +21,7 @@
 是两个完全不同的结论，而前者会被读成「本站没覆盖 GBS」。
 本页列出全部实体，包括命中为 0 的 —— 0 是一个观测结果，不是缺失。
 </div>
-<ul class="stats"><li class="stat"><span class="v">68</span><span class="k">疾病实体</span><span class="q"><details class="cal"><summary>各类别均计入自免<span class="dim"> · 为什么</span></summary><p class="xs dim">类别标签只是标签，不是范围划分：下列全部类别（含同种免疫、过敏、自身炎症）均计入本站的「自免」口径。按使用者 2026-08-22 的决定保留类别，是为了需要分开看时不必重跑 —— 例如「不含移植相关的自免试验数」是一句 SQL。AL 型淀粉样变按同一决定不纳入（克隆性浆细胞病，非免疫介导）；移植后淋巴增殖性疾病（PTLD）归入肿瘤参照。</p></details></span></li><li class="stat"><span class="v">40</span><span class="k">有命中</span><span class="q"><details class="cal no"><summary>有命中含篮式<span class="dim"> · 为什么</span></summary><p class="xs dim">「有命中」= 该实体在至少一项在范围试验里被登记为适应症，而且<b>含篮式</b> —— 一项 7 个适应症的篮式试验会让 7 个实体同时算「有命中」。所以这个数回答的不是「有多少个病被专门研究过」，那个问题要看各卡片的「专病」那一格。</p></details></span></li><li class="stat"><span class="v">28</span><span class="k">查过为 0</span><span class="q"><details class="cal"><summary>观测结果 · 不是缺失<span class="dim"> · 为什么</span></summary><p class="xs dim">这些实体本站逐个查过，结果是 0 项。0 不等于「还没查」，也不等于「本站没有这个病」—— 各自的页面都在，并且各自说明这个 0 的外推边界。</p></details></span></li><li class="stat"><span class="v"><a href="../trials.html">343</a></span><span class="k">在范围试验</span><span class="q"><details class="cal"><summary>唯一可相加的总数<span class="dim"> · 为什么</span></summary><p class="xs dim">按病计数不可相加：一项 7 个适应症的篮式试验会出现在 7 个疾病档案里，把各病的数字相加会得到一个没有意义的总数。这一个数是例外 —— 它按去重后的试验条数计，也是全站唯一可以当作总量引用的那个。</p></details></span></li></ul>
+<ul class="stats"><li class="stat"><span class="v"><span class="mono">68</span></span><span class="k">疾病实体</span><span class="q"><details class="cal"><summary>各类别均计入自免<span class="dim"> · 为什么</span></summary><p class="xs dim">类别标签只是标签，不是范围划分：下列全部类别（含同种免疫、过敏、自身炎症）均计入本站的「自免」口径。按使用者 2026-08-22 的决定保留类别，是为了需要分开看时不必重跑 —— 例如「不含移植相关的自免试验数」是一句 SQL。AL 型淀粉样变按同一决定不纳入（克隆性浆细胞病，非免疫介导）；移植后淋巴增殖性疾病（PTLD）归入肿瘤参照。</p></details></span></li><li class="stat"><span class="v"><span class="mono">40</span></span><span class="k">有命中</span><span class="q"><details class="cal no"><summary>有命中含篮式<span class="dim"> · 为什么</span></summary><p class="xs dim">「有命中」= 该实体在至少一项在范围试验里被登记为适应症，而且<b>含篮式</b> —— 一项 7 个适应症的篮式试验会让 7 个实体同时算「有命中」。所以这个数回答的不是「有多少个病被专门研究过」，那个问题要看各卡片的「专病」那一格。</p></details></span></li><li class="stat"><span class="v"><span class="mono">28</span></span><span class="k">查过为 0</span><span class="q"><details class="cal"><summary>观测结果 · 不是缺失<span class="dim"> · 为什么</span></summary><p class="xs dim">这些实体本站逐个查过，结果是 0 项。0 不等于「还没查」，也不等于「本站没有这个病」—— 各自的页面都在，并且各自说明这个 0 的外推边界。</p></details></span></li><li class="stat"><span class="v"><a href="../trials.html"><span class="mono">343</span></a></span><span class="k">在范围试验</span><span class="q"><details class="cal"><summary>唯一可相加的总数<span class="dim"> · 为什么</span></summary><p class="xs dim">按病计数不可相加：一项 7 个适应症的篮式试验会出现在 7 个疾病档案里，把各病的数字相加会得到一个没有意义的总数。这一个数是例外 —— 它按去重后的试验条数计，也是全站唯一可以当作总量引用的那个。</p></details></span></li></ul>
 </section>
 
 <div class="alias"><details class="cal no"><summary>别名不完整 · 不收亚型名<span class="dim"> · 为什么</span></summary><p class="xs dim">别名与缩写是人工逐条维护的，而且刻意不收亚型名 —— GPA、皮肌炎、冷抗体型 AIHA 都不作为别名列出，因为亚型是不同的实体。所以 Ctrl+F 找不到某个写法，只说明这份表里没写，不说明本站没有这个病。</p></details></div>
@@ -40,7 +41,7 @@
 
 <footer>
 本页内容由自动管线从公开来源汇编生成，每条结论均可回放至原始字节。<br>汇编、排序与关注点标注是本站的编辑判断，不代表任何机构立场。<br>不含未公开披露信息；不构成投资建议或诊疗建议。
-<p class="xs">试验数据截至 2026-10-27T01:20:52Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
+<p class="xs">试验数据截至 2026-10-28T01:14:12Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
 数字口径见<a href="../method.html">口径与盲区</a>。</p>
 </footer>
 </body>

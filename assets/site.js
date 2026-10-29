@@ -142,7 +142,15 @@
       var el = items[i];
       var ok = true;
       for (var k in active) {
-        if (active[k].indexOf(el.getAttribute("data-" + k)) < 0) { ok = false; break; }
+        // ⚠️ 一律按 token 列表求交，不用相等匹配：靶点这类维度是**多值**的
+        //    （一项双靶试验的 data-tgt 是 "BCMA CD19"）。用相等匹配的后果是
+        //    筛 CD19 时双靶试验一条都不出现 —— 而那不报错，只是少了一批。
+        var own = (el.getAttribute("data-" + k) || "").split(" ");
+        var any2 = false;
+        for (var j = 0; j < active[k].length; j++) {
+          if (own.indexOf(active[k][j]) >= 0) { any2 = true; break; }
+        }
+        if (!any2) { ok = false; break; }
       }
       if (ok && q) {
         if (el.__txt === undefined) {

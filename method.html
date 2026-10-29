@@ -16,7 +16,7 @@
 <h1>口径与盲区</h1>
 <p class="dim sm" style="margin-top:.1rem">数字怎么来的、哪些地方一定不准</p>
 
-<nav class="toc" aria-label="本页小节"><b>本页小节</b><ol><li><a href="#recall">召回口径</a></li><li><a href="#classify">分类规则</a></li><li><a href="#scope">范围口径</a></li><li><a href="#replay">引文回放</a></li><li><a href="#verify">核验状态</a></li><li><a href="#blind">已知盲区</a></li><li><a href="#lit">文献层口径</a></li><li><a href="#cal">口径全表</a></li><li><a href="#fix">报一条错分类</a></li><li><a href="#deferred">已声明、还没建成</a></li><li><a href="#run">运行内务</a></li><li><a href="#wont">不做什么</a></li></ol></nav>
+<nav class="toc" aria-label="本页小节"><b>本页小节</b><ol><li><a href="#recall">召回口径</a></li><li><a href="#classify">分类规则</a></li><li><a href="#scope">范围口径</a></li><li><a href="#replay">引文回放</a></li><li><a href="#verify">核验状态</a></li><li><a href="#blind">已知盲区</a></li><li><a href="#lit">文献层口径</a></li><li><a href="#cal">口径全表</a></li><li><a href="#fix">报一条错分类</a></li><li><a href="#deferred">已声明、还没建成</a></li><li><a href="#run">运行内务</a></li><li><a href="#count">可以自己数一遍的数</a></li><li><a href="#js">那一段 JavaScript</a></li><li><a href="#iit">IIT 怎么判的</a></li><li><a href="#pri">关注档全部规则</a></li><li><a href="#wont">不做什么</a></li></ol></nav>
 <h2 id="recall">召回：为什么是「模态优先全量扫」而不是「按病名检索」</h2>
 <p class="sm">本站不按疾病名去注册库检索，而是先用
 <code>query.intr = CAR OR "chimeric antigen receptor"</code> 把干预性研究全量取回
@@ -169,11 +169,11 @@ ACR 这一条只存标题、摘要号、引文与链接，<b>不存摘要正文<
 不回答「这个数字该怎么读」—— 后者一律留在数字旁边，一句也没有搬走。
 ⚠️ 数据一旦过期，下面这几个数会<b>同时回到首页横幅上</b>：
 要判断「为什么它停在那个时刻」时，线索必须在眼前，不能在另一页。</p>
-<p class="sm">最近一次<b>刷新过试验数据</b>的成功运行：第 197 次 · 作业 <code>weekly</code> · 候选 2957 → 纳入 343。累计刷新过试验数据的成功运行 <b>37</b> 次，过期阈值 192 小时。</p>
+<p class="sm">最近一次<b>刷新过试验数据</b>的成功运行：第 201 次 · 作业 <code>weekly</code> · 候选 2957 → 纳入 343。累计刷新过试验数据的成功运行 <b>38</b> 次，过期阈值 192 小时。</p>
 <p class="sm">另有 <b>11</b> 次运行永久停在 <code>status=running</code>，
 未计入任何一侧。它们既没收尾也没标失败（进程被杀、机器休眠都会这样），
 所以本站不能把它们算成成功，也不能算成失败 —— 只能单独报数。</p>
-<p class="sm">另有 <b>88</b> 次成功运行只涉及其他数据层（交易发现），
+<p class="sm">另有 <b>90</b> 次成功运行只涉及其他数据层（交易发现），
 <b>它们不刷新试验数据</b>，因此不计入「试验数据截至」那个时刻。
 交易层自己的覆盖账见<a href="deals.html">交易情报</a>。</p>
 <p class="sm">上次试验数据刷新之后，另有 <b>0</b> 次
@@ -183,6 +183,98 @@ ACR 这一条只存标题、摘要号、引文与链接，<b>不存摘要正文<
 机器在计划时间休眠或关机时，任务<b>静默不运行</b>，既不失败也不留记录。
 所以「上次成功」与「今天」之间出现空档时，第一个该排除的原因是机器没开机，
 而不是采集失败 —— 这两者在库里长得不一样（后者会进上面那个失败计数）。</p>
+
+<h2 id="count">页面上那些「可以自己数一遍」的数</h2>
+<p class="sm">本站有几处刻意把<b>同一个量的两个来源</b>并排印出来，让读者不必相信、
+可以自己核对。这一节集中说明它们；各页上只留那句主张本身，不重复解释。</p>
+<ul class="sm">
+<li><b>全部试验页的行数</b>：那一页印着「全部 N 项 · 已全部列出，无截断、无分页」，
+并在旁边给出「行数 N ＝ 在范围总数 N」。两个数来自两条不同的查询
+（一条取全部在范围试验、一条按分类档位计数）。它们相等是这一页的全部价值 ——
+<b>不相等时那条横幅会换成红色的缺陷横幅</b>，而不是照样印「已全部列出」。
+那是刻意的：两数不等只可能是取数口径漂开了，而那是个必须被看见的缺陷。</li>
+<li><b>候选池的分解式</b>：首页印着「候选池 ＝ 自免 ＋ 肿瘤参照 ＋ 判为不在范围 ＋ 未分类」。
+各项相加必须等于总数；这是本站唯一一处鼓励读者做加法的地方。</li>
+<li><b>疾病页的两栏分布</b>：专病与篮式<b>永不相加</b> —— 篮式试验的样本量在各适应症之间
+分摊，把两栏加起来会得到一个没有意义的数。所以那两栏连列都不共享。</li>
+<li><b>筛选条的分母</b>：筛选时印「显示 m / 共 n 项」，其中 n 由服务端渲染、
+JS 只读不算。各档计数之和必须等于分母，否则导出直接失败 ——
+不穷尽的轴会把一部分条目筛成「既不在任何一档里、也没人发现它被筛掉了」。
+⚠️ 靶点那一轴是例外：它是<b>多值</b>的（一项双靶试验同时落两档），
+所以各档可相加大于总数，而那一行上印着这句限定。</li>
+</ul>
+
+<h2 id="js">本站有一段 JavaScript，它只做三件事</h2>
+<p class="sm">本站现在带一段 <code>assets/site.js</code>。在那之前全站零 JS，
+而那条决定是刻意的 —— 这一节说明它现在做什么、以及<b>关掉它会怎样</b>。</p>
+<ul class="sm">
+<li><b>表头排序</b>（只在「全部试验」那一页）。准入条件由代码把关：
+<b>一张表的行数必须等于它声明的总数</b>。本站有十几处「共 N 项，上表只列最近 N 条」，
+给那样一张表加排序等于排出一个假的 Top-N —— 读者按某一列排出来的「最前几项」
+只是已列出那几行里的最前几项，而页面不会说这件事。</li>
+<li><b>筛选</b>（「全部试验」与「注册试验动态」两页）。分母由服务端渲染，
+JS 只读不算；各档计数之和必须等于分母，否则导出直接失败。
+筛选会<b>隐藏</b>不匹配的条目，而浏览器自带的 Ctrl+F 找不到被隐藏的内容 ——
+这句话常驻印在筛选条上，不是藏在这一页里。</li>
+<li><b>本页检索</b>。它<b>不是</b>全站搜索，只在当前页已列出的条目的文字里找。
+刻意如此：一个静默返回 0 结果的全站搜索框会制造本站第四种无法区分的空
+（没查过 / 查过是 0 / 没建成 / 搜不到），而本页检索的 0 结果能说清
+「这一页索引了什么、没索引什么」。</li>
+</ul>
+<p class="sm"><b>关掉 JavaScript 之后</b>：没有任何控件、所有条目完整可见、
+行序与页面上印着的那句行序声明一致。也就是说<b>退化态就是完整态</b> ——
+页面上每一句话在没有 JS 的情况下仍然是真的。本站刻意不做
+loading / spinner /「暂无数据」这类中间态：那些东西在 JS 失效时会让页面
+<b>主动断言一个零</b>，而那是本站最不能犯的错。</p>
+
+<h2 id="iit">「IIT」怎么判的，以及为什么仍然答不了「有没有 IND」</h2>
+<p class="sm">本站把一项试验分成三类 —— <b>IIT</b>（研究者发起研究）、<b>企业申办</b>、
+<b>政府/公立机构发起</b>。判据只有一条：<b>牵头申办方的机构性质</b>，
+而那是注册库自己给的字段（LeadSponsorClass），本站照抄、不另做判断。</p>
+<ul class="sm">
+<li><b>IIT</b> ← 注册库把牵头申办方标成学术机构（医院、大学或个人研究者）。
+实测这一档里排在前面的是浙江大学、同济医学院协和医院、浙大儿院、
+中国医学科学院血液病医院、同济医院、陆道培医院 —— 都是 IIT 申办方。</li>
+<li><b>企业申办</b> ← 标成企业。实测前几名是诺华、重庆精准、南京北恒、
+Cabaletta、Kyverna、驯鹿/合源一类。</li>
+<li><b>政府/公立机构发起</b> ← 标成政府机构。</li>
+</ul>
+<p class="sm"><b>为什么这个标签比「期别」有用。</b>
+343 项在范围试验里有 230 项落在 I 期家族，III 期只有 6 项 ——
+也就是说<b>「期别」这一列几乎不携带信息</b>。
+而研究类型与期别交叉之后才看得见形状：
+<b>企业申办的试验里有 37% 进到 II 期及以上，IIT 是 15%</b>。
+光看期别看不见这个差别。下面这张表是完整的交叉口径：</p>
+<div class="tw"><table><thead><tr><th>研究类型</th><th class="n">I 期家族</th><th class="n">II 期</th><th class="n">III 期</th><th class="n">未分期</th><th class="n">合计</th></tr></thead><tbody><tr><td>IIT</td><td class="n">145</td><td class="n">28</td><td class="n">1</td><td class="n">21</td><td class="n"><b>195</b></td></tr><tr><td>企业申办</td><td class="n">84</td><td class="n">48</td><td class="n">5</td><td class="n">7</td><td class="n"><b>144</b></td></tr><tr><td>政府/公立机构发起</td><td class="n">1</td><td class="n">0</td><td class="n">0</td><td class="n">3</td><td class="n"><b>4</b></td></tr><tr><td><b>合计</b></td><td class="n"><b>230</b></td><td class="n"><b>76</b></td><td class="n"><b>6</b></td><td class="n"><b>31</b></td><td class="n"><b>343</b></td></tr></tbody></table></div>
+<p class="sm"><b>三条必须跟着这个标签走的限制。</b></p>
+<ul class="sm">
+<li>注册库把医院、大学与<b>个人研究者</b>都归进同一档，本站分不出三者。
+对「是不是 IIT」这个判定来说这不是问题（三者都是 IIT 申办方），
+但这一列<b>答不了</b>「是医院牵头还是某位研究者牵头」。</li>
+<li>「政府/公立机构发起」那一档共 4 项，里面混着一家<b>省级医院</b>。
+按「申办方是医院就算 IIT」的判据它们也是 IIT，但注册库把它们标成了政府机构 ——
+<b>本站照抄注册库、不替它改判</b>，所以那 3 项留在政府那一档。
+要按「医院牵头」口径看，得把这两档一起看。</li>
+<li>申办方性质是提交者自己填的。一项实际由企业推动、而以医院名义登记的试验，
+在这一列里会显示成 IIT。本站没有办法发现这种情况。</li>
+</ul>
+<p class="sm"><b>「有没有 IND」仍然答不了，而且这不是还没做。</b>
+IIT 与 IND 是两个轴：一位主要研究者可以自己持有 IND（IIT + 有 IND）；
+一家企业在本国开展的试验可能根本没有美国 IND（企业申办 + 无 IND）。
+而本站<b>没有任何</b>责任方（responsible party）、监管归属、是否受 FDA 监管、
+是否持有 IND 的字段 —— 连保存下来的注册库原始快照里都没有，
+所以连回溯都做不到，要取这些信息必须改召回层。
+国内语境里的「IIT 对注册临床」还关系到药监申报，而那在 ClinicalTrials.gov 上完全看不见。</p>
+<p class="sm"><b>所以：这一列能回答「谁发起的」，不能回答「走的哪条监管路径」。</b></p>
+
+<h2 id="pri">关注档（P1 / P2 / P3）的全部规则</h2>
+<p class="sm">注册试验动态上每一条事件都带一个关注档与一句定档理由。
+档位<b>不是</b>临床价值判断，它是「按本站可见的注册库字段，这件事有多可能
+让此前的判断失效」。下表是全部规则，<b>由代码生成</b>，不是手抄的一份副本。</p>
+<div class="tw"><table><thead><tr><th>档</th><th>看哪个字段</th><th>规则 id</th><th>类别</th><th>定档理由（逐条印在事件卡上）</th></tr></thead><tbody><tr><td><span class="pri p1">P1</span></td><td>入组数</td><td class="xs"><code>enrollment_changed</code></td><td class="xs">字段变更</td><td>入组数变化 —— 样本量与检验效能前提变了。⚠️ 这个字段是计划值还是实际已入组，看「入组数性质」那一列</td></tr><tr><td><span class="pri p1">P1</span></td><td>当前状态</td><td class="xs"><code>status_to_stopped</code></td><td class="xs">字段变更（抬级）</td><td>状态变为终止类（NO_LONGER_AVAILABLE / SUSPENDED / TERMINATED / WITHDRAWN）—— 安全性或可行性前提可能已变，需回到注册库原文与公开披露核对</td></tr><tr><td><span class="pri p1">P1</span></td><td>停止原因</td><td class="xs"><code>why_stopped_changed</code></td><td class="xs">字段变更</td><td>申办方给出/改写了停止原因 —— 注册库里唯一直接说明停止理由的字段</td></tr><tr><td><span class="pri p2">P2</span></td><td>适应症列表</td><td class="xs"><code>conditions_changed</code></td><td class="xs">字段变更</td><td>适应症列表变化 —— 本站的疾病归类可能随之变化</td></tr><tr><td><span class="pri p2">P2</span></td><td>干预列表</td><td class="xs"><code>interventions_changed</code></td><td class="xs">字段变更</td><td>干预列表变化 —— 产品或对照可能被替换</td></tr><tr><td><span class="pri p2">P2</span></td><td>—</td><td class="xs"><code>newly_registered</code></td><td class="xs">非字段事件</td><td>新登记的在范围试验 —— 一个此前不在本站视野里的项目，申办方与疾病归类都需要回到注册库原文核对</td></tr><tr><td><span class="pri p2">P2</span></td><td>期别</td><td class="xs"><code>phase_changed</code></td><td class="xs">字段变更</td><td>期别变化 —— 证据等级与监管路径前提随之变化</td></tr><tr><td><span class="pri p2">P2</span></td><td>申办方</td><td class="xs"><code>sponsor_changed</code></td><td class="xs">字段变更</td><td>申办方变化 —— 可能对应授权、转让或并购，需回到公开披露核对</td></tr><tr><td><span class="pri p2">P2</span></td><td>当前状态</td><td class="xs"><code>status_changed</code></td><td class="xs">字段变更</td><td>招募状态变化 —— 入组进度前提变了</td></tr><tr><td><span class="pri p3">P3</span></td><td>随机化设置</td><td class="xs"><code>allocation_changed</code></td><td class="xs">字段变更</td><td>随机化设置变化 —— 设计前提变了，需回到方案核对</td></tr><tr><td><span class="pri p3">P3</span></td><td>国家/地区</td><td class="xs"><code>countries_changed</code></td><td class="xs">字段变更</td><td>参与国家/地区变化 —— 可及性与监管路径随之变化</td></tr><tr><td><span class="pri p3">P3</span></td><td>入组数性质</td><td class="xs"><code>enrollment_type_changed</code></td><td class="xs">字段变更</td><td>入组数类型变化（预计/实际）—— 通常意味着入组结束</td></tr><tr><td><span class="pri p3">P3</span></td><td>标题</td><td class="xs"><code>title_changed</code></td><td class="xs">字段变更</td><td>标题改写 —— 多数是措辞调整，仅留档</td></tr></tbody></table></div>
+<p class="sm">⚠️ <b>本站刻意没有 P0。</b>死亡、细胞因子释放综合征、继发恶性肿瘤这类事件
+永远不会出现在注册库的字段里 —— 那条通道在架构上是死的。
+留一个永不触发的最高档，会让读者以为「没有 P0」等于「没有严重事件」。</p>
 
 <h2 id="wont">不做什么</h2>
 <ul class="sm">
@@ -194,7 +286,7 @@ ACR 这一条只存标题、摘要号、引文与链接，<b>不存摘要正文<
 
 <footer>
 本页内容由自动管线从公开来源汇编生成，每条结论均可回放至原始字节。<br>汇编、排序与关注点标注是本站的编辑判断，不代表任何机构立场。<br>不含未公开披露信息；不构成投资建议或诊疗建议。
-<p class="xs">试验数据截至 2026-10-28T01:14:12Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
+<p class="xs">试验数据截至 2026-10-29T01:32:24Z（站点地址 https://qisichen74-wq.github.io/autoimmune_cart_hub/）。
 数字口径见<a href="method.html">口径与盲区</a>。</p>
 </footer>
 </body>
